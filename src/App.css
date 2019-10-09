@@ -1,13 +1,25 @@
 .App {
   text-align: center;
+  background-color: #0f0f0f;
+  color: white;
+
+}
+
+p, h2{
+  cursor: default;
 }
 
 .App-logo {
   height: 40vmin;
 }
 
+.searchStyle{
+  margin-top: 120px;
+  margin-bottom: 150px;
+}
+
 .App-header {
-  background-color: #282c34;
+  background-color: #0f0f0f;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -20,3 +32,12 @@
 .App-link {
   color: #09d3ac;
 }
+
+.movies{
+  display: grid;
+  grid-column-gap: 0%;
+  grid-row-gap: 0%;
+  grid-template-columns: auto auto auto;
+}
+
+
