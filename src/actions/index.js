@@ -1,25 +1,17 @@
-export const increment = () => {
-    return {
-        type: 'INCREMENT',
-        payload: 10
-    };
-};
-export const decrement = () => {
-    return {
-        type: 'DECREMENT',
-        payload: 5
-    };
-};
-
-export const search = (txt) => {
-    return {
-        type: 'SEARCH',
-        payload: txt
-    };
-};
-
-export const save_search = () => {
-    return {
-        type: 'SAVE_SEARCH',
+export const success = (search) => {
+    return{
+        type: 'SEARCH_MOVIES_SUCCESS',
+        payload: search
+    }
+}
+export const failure = (search) => {
+    return{
+        type: 'SEARCH_MOVIES_FAILURE',
+        payload: search
+    }
+}
+export const req = () => {
+    return{
+        type: 'SEARCH_MOVIES_REQUEST',
     }
 }

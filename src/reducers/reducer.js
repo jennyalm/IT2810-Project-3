@@ -19,6 +19,12 @@ const reducer = (state, action) => {
                 errorMessage: action.error
             };
         default:
-            return state;
+            return {
+                ...state,
+                loading: true,
+                errorMessage: null
+            }
     }
 };
+
+export default reducer
