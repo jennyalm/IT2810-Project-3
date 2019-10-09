@@ -4,15 +4,24 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-//
-// const  store = createStore(
-//     allReducer,
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import configureStore from './store';
+
+const initialState = {
+    loading: true,
+    movies: [],
+    errorMessage: null
+};
+
+
+ReactDOM.render(
+    <Provider store={configureStore(initialState)}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
