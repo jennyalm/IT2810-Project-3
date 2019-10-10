@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Movie from "./components/Movie/Movie";
 import Search from "./components/Search/Search";
 import PopUp from "./components/PopUp/PopUp";
+import StarRatingComponent from 'react-star-rating-component';
 
 const MOVIE_API_URL = "https://www.omdbapi.com/?s=man&apikey=4a3b711b";
 
@@ -86,14 +87,13 @@ const App = () => {
     const { movies, errorMessage, loading } = state;
 
     const [showPopup, setShowPopup] = useState(false);
-    
-    const togglePopup = () => setShowPopup(true);
 
     return (
         <div className="App">
             <Header text="IT2810 Prosjekt 3" />
             <div className="searchStyle">
             <Search search={search} />
+
             </div>
             <p className="App-intro">Sharing a few of our favourite movies</p>
             <div className="movies">
@@ -103,7 +103,8 @@ const App = () => {
                     <div className="errorMessage">{errorMessage}</div>
                 ) : (
                     movies.map((movie, index) => (
-                        <Movie onClick={() => togglePopup()} key={`${index}-${movie.Title}`} movie={movie} />
+                        <Movie onClick={() => setShowPopup(true)} key={`${index}-${movie.Title}`} movie={movie} />
+
                     ))
                 )}
             </div>
@@ -111,7 +112,7 @@ const App = () => {
             {showPopup ?
                 <PopUp
                     text='Click "Close Button" to hide popup'
-                    closePopup={() => togglePopup()}
+                    closePopup={() => setShowPopup(!showPopup)}
                 />
                 : null
             }
