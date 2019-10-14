@@ -1,4 +1,11 @@
-const reducer = (state, action) => {
+const initialState = {
+    loading: true,
+    movies: [],
+    errorMessage: null
+};
+
+
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "SEARCH_MOVIES_REQUEST":
             return {
@@ -19,6 +26,12 @@ const reducer = (state, action) => {
                 errorMessage: action.error
             };
         default:
-            return state;
+            return {
+                ...state,
+                loading: true,
+                errorMessage: null
+            }
     }
 };
+
+export default reducer
