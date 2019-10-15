@@ -62,7 +62,7 @@ const App = () => {
         <div className="App">
             <Header text="IT2810 Prosjekt 3" />
             <div className={"searchStyle"}>
-            <Search search={search} />
+                <Search search={search} />
             </div>
             <p className="App-intro">Sharing a few of our favourite movies</p>
             <div className="movies">
