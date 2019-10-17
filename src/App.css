@@ -1,7 +1,16 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   background-color: #0f0f0f;
   color: white;
+
+}
+
+.displaySize{
+  width: 100%;
 
 }
 

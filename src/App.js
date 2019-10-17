@@ -1,117 +1,91 @@
 // Hooks
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 // Style
 import './App.css';
 
 // React components
 import Header from "./components/Header/Header";
-import Movie from "./components/Movie/Movie";
 import Search from "./components/Search/Search";
-import PopUp from "./components/PopUp/PopUp";
-
+import DisplayMovies from './components/DisplayMovies/DisplayMovies'
 
 // redux
-import Reducer from "./reducers/reducer"
 import { connect } from 'react-redux';
-import { success, failure, req } from './actions'
-
-import store from "./store"
+import { success, failure, req, yearAsc, yearDesc } from './actions'
 
 
-const MOVIE_API_URL = "https://www.omdbapi.com/?s=man&apikey=4a3b711b";
-
-const initialState = {
-    loading: true,
-    movies: [],
-    errorMessage: null
-};
-
-const App = () => {
-
-    const [state, dispatch] = useReducer(Reducer, initialState);
-
-    const [showPopup, setShowPopup] = useState(false);
+// the default search when website opens, with search: s=tarzan
+const MOVIE_API_URL = "https://www.omdbapi.com/?s=tarzan&apikey=4a3b711b";
 
 
+const App = (props) => {
+
+    // works like a lifecycle method and updates displayed movies depending on Search
     useEffect(() => {
         fetch(MOVIE_API_URL)
             .then(response => response.json())
             .then(jsonResponse => {
-                dispatch(success(jsonResponse.Search))
+                props.success(jsonResponse.Search)
             });
     }, []);
 
+    // The search method
     const search = searchValue => {
-        dispatch(req())
-
+        props.req()
         fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`)
             .then(response => response.json())
             .then(jsonResponse => {
                 if (jsonResponse.Response === "True") {
-                    dispatch(success(jsonResponse.Search))
+                    props.success(jsonResponse.Search)
                 } else {
-                    dispatch(failure(jsonResponse.Error))
+                    props.failure(jsonResponse.Error)
                 }
             });
     };
 
-    const { movies, errorMessage, loading } = state;
-
     return (
         <div className="App">
-            <Header text="IT2810 Prosjekt 3" />
-            <div className={"searchStyle"}>
-                <Search search={search} />
+            <div>
+            <Header text="React-Redux movie searcher" />
             </div>
-            <p className="App-intro">Sharing a few of our favourite movies</p>
-            <div className="movies">
-                {loading && !errorMessage ? (
-                    <span>loading... </span>
-                ) : errorMessage ? (
-                    <div className="errorMessage">{errorMessage}</div>
-                ) : (
-                    movies.map((movie, index) => (
-                        <Movie onClick={() => setShowPopup(true)} key={`${index}-${movie.Title}`} movie={movie} />
-                    ))
-                )}
+            <div className="searchStyle">
+            <Search search={search} />
             </div>
-
-
-            {showPopup ?
-                <PopUp
-                    text='Click "Close Button" to hide popup'
-                    closePopup={() => setShowPopup(!showPopup)}
-                />
-                : null
-            }
-
-
-
-
-
+            <div className={"displaySize"}>
+            <DisplayMovies
+                loading={props.loading}
+                movies={props.movies}
+                errorMessage={props.errorMessage}
+            />
+            </div>
         </div>
     );
 };
 
 
 
+// maps the value in the global redux store to props.
+
+// OPS!! FÅR OPP MELDING I CONSOLE, FORVENTER NOE ANNET ENN Reducer HER, MEN HVA?
 const mapStateToProps = state => ({
-    ...state,
-    loading: req(state),
-    errorMessage: failure(state)
+    loading: state.Reducer.loading,
+    movies: state.Reducer.movies,
+    errorMessage: state.Reducer.errorMessage,
+    sortBy: state.SortReducer.sortBy,
+    order: state.SortReducer.order
+
 })
 
-// const mapDispatchToProps = (dispatch, search="") => {
-//     return {
-//         success: () => dispatch(success(search)),
-//         failure: () => dispatch(failure(search)),
-//         req: () => dispatch(req())
-//     }
-// }
+// dispatches to the global redux store.
+const mapDispatchToProps = dispatch => {
+    return {
+        success: (event) => dispatch(success(event)),
+        failure: (event) => dispatch(failure(event)),
+        req: () => dispatch(req()),
+        yearAsc: () => dispatch(yearAsc()),
+        yearDesc: () => dispatch(yearDesc())
+    }
+}
 
-
-
-export default connect(mapStateToProps)(App);
-// mapDispatchToProps
-
+// connects mapStateToProps and mapDispatchToProps to App.
+export default connect(mapStateToProps, mapDispatchToProps)(App);

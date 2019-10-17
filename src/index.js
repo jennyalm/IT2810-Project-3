@@ -4,10 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import configureStore from './store';
+
+import rootReducer from './reducers'
+import { createStore } from 'redux'
 
 const initialState = {
     loading: true,
@@ -15,9 +16,15 @@ const initialState = {
     errorMessage: null
 };
 
+const store = createStore(
+    rootReducer,
+    initialState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
 
 ReactDOM.render(
-    <Provider store={configureStore(initialState)}>
+    <Provider store={store}>
         <App />
     </Provider>,
     document.getElementById('root')

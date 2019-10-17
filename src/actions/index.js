@@ -15,3 +15,15 @@ export const req = () => {
         type: 'SEARCH_MOVIES_REQUEST',
     }
 }
+
+export const yearAsc = () => {
+    return{
+        type: 'YEAR_ASC'
+    }
+}
+
+export const yearDesc = () => {
+    return{
+        type: 'YEAR_DESC'
+    }
+}
