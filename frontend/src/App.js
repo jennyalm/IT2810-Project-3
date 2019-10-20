@@ -1,6 +1,6 @@
 // Hooks
 import React, { useEffect } from "react";
-
+import axios from "axios"
 
 
 // Style
@@ -33,9 +33,12 @@ const App = (props) => {
 
     // The search method , må endre 12000 til riktig nummer
     const search = searchValue => {
+        console.log("Attempting to search")
         props.req()
-        fetch(`http://it2810-13.idi.ntnu.no:12000/Product?` +
-            ((!props.movies.Title) ? '' : `&Title=${props.movies.Title}`))
+
+        const urlToSearch = `http://localhost:4000/Product?` +((!props.movies.Title) ? '' : `&Title=${props.movies.Title}`);
+        console.log(urlToSearch);
+        axios.get(urlToSearch)
             .then(response => response.json())
             .then(jsonResponse => {
                 if (jsonResponse.Response === "True") {

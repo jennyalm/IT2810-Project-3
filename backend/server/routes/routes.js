@@ -16,15 +16,23 @@ router.use((req, res, next) => {
     next();
 });
 
-
-router.get("/", (request, response) => {
+/*
+router.get("/product/", (request, response) => {
     //tom find metode vil hente ut alt.
     movies.find({ Title: request.query.Title }).then(items =>
         response.json(items)
     );
+});*/
+
+router.get("/product/", async (request, response) => {
+    console.log(request.query);
+    const moviesFound = await movies.find({Year: request.query.year });
+    console.log(moviesFound)
 });
 
-// @route PUT starRating
+
+
+// update rating
 router.put("/rating", (request, response) => {
     let Movies = movies.where({
         Title: request.body.Title
@@ -38,8 +46,6 @@ router.put("/rating", (request, response) => {
 
 //Create a new movie with rating
 router.post('/rating', (req,res) => {
-    //tell express what to do with the json data
-    // req.body
 
     let movie = new movies(req.body)
     movie.save()
@@ -57,10 +63,11 @@ router.post('/rating', (req,res) => {
 
 
 //antall filmer per side = 10
+/*
 movies.paginate(query, {
     page: request.query.page,
     limit: 10,
     sort: order
 }).then(items => response.json(items));
-
-module.exports = router;
+*/
+export default router;
