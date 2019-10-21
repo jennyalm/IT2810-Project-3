@@ -24,10 +24,17 @@ router.get("/product/", (request, response) => {
     );
 });*/
 
-router.get("/product/", async (request, response) => {
-    console.log(request.query);
-    const moviesFound = await movies.find({Year: request.query.year });
-    console.log(moviesFound)
+router.get("/", async (request, response) => {
+    let content = {}
+    if (request.query.year) { content.Year = request.query.year}
+    if (request.query.title) { content.Title = {$regex : RegExp(request.query.title), $options : '-i'}}
+    if (request.query.genre) { content.Genre = {$regex : RegExp(request.query.genre), $options : '-i'}}
+
+    console.log(content)
+    const moviesFound = await movies.find(content);
+    // console.log(moviesFound)
+    //response.json(moviesFound);
+
 });
 
 
@@ -44,30 +51,13 @@ router.put("/rating", (request, response) => {
 });
 
 
-//Create a new movie with rating
-router.post('/rating', (req,res) => {
-
-    let movie = new movies(req.body)
-    movie.save()
-        .then(doc => {
-            if(!doc || doc.length === 0) {
-                return res.status(500).send(doc)
-            }
-            res.status(201).send(doc)
-        })
-        .catch(err => {
-            res.status(500).json(err)
-        })
-});
-
-
 
 //antall filmer per side = 10
-/*
-movies.paginate(query, {
+
+movies.paginate(content, {
     page: request.query.page,
     limit: 10,
     sort: order
 }).then(items => response.json(items));
-*/
+
 export default router;
