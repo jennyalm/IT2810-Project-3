@@ -19,3 +19,6 @@ app.use("/movies",router);
 app.listen(4000, () => {
     console.log("Listening at http://localhost:4000/...");
 });
+
+// test
+// Nå skal det testes
