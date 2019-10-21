@@ -33,7 +33,7 @@ router.get("/", async (request, response) => {
     console.log(content)
     const moviesFound = await movies.find(content);
     // console.log(moviesFound)
-    //response.json(moviesFound);
+    response.json(moviesFound);
 
 });
 
@@ -53,11 +53,11 @@ router.put("/rating", (request, response) => {
 
 
 //antall filmer per side = 10
-
+/*
 movies.paginate(content, {
     page: request.query.page,
     limit: 10,
     sort: order
 }).then(items => response.json(items));
-
+*/
 export default router;
