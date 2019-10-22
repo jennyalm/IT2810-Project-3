@@ -18,10 +18,10 @@ import { success, failure, req, yearAsc, yearDesc } from './actions'
 
 
 // the default search when website opens, with search: s=tarzan
-const MOVIE_API_URL = fetch(process.env.PUBLIC_URL + "/fakeData");
+const MOVIE_API_URL = process.env.PUBLIC_URL + "/fakeData";
 
 
-// const MOVIE_API_URL = "https://www.omdbapi.com/?s=tarzan&apikey=4a3b711b";
+//const MOVIE_API_URL = "https://www.omdbapi.com/?s=tarzan&apikey=4a3b711b";
 
 
 const App = (props) => {
@@ -31,7 +31,9 @@ const App = (props) => {
         fetch(MOVIE_API_URL)
             .then(response => response.json())
             .then(jsonResponse => {
+                console.dir(jsonResponse.Search)
                 props.success(jsonResponse.Search)
+                
             });
     }, []);
 
@@ -42,7 +44,7 @@ const App = (props) => {
 
         //  http://it2810-13.idi.ntnu.no/Product
 
-        const urlToSearch = `http://localhost:4000/Product?` +((props.movies.Title) ? `&Title=${props.movies.Title}` : '');
+        const urlToSearch = `http://localhost:3000/Product?` +((props.movies.Title) ? `&Title=${props.movies.Title}` : '');
         console.log(urlToSearch);
         axios.get(urlToSearch)
             .then(response => response.json())
@@ -56,19 +58,20 @@ const App = (props) => {
     };
 
     return (
-        <div className="App">
-            <div>
-            <Header text="React-Redux movie searcher" />
-            </div>
+        <div className="Content">
+            <Header text="Group 13" /> 
             <div className="searchStyle">
-            <Search search={search} />
+                <Search search={search} />
             </div>
-            <div className={"displaySize"}>
-            <DisplayMovies
-                loading={props.loading}
-                movies={props.movies}
-                errorMessage={props.errorMessage}
-            />
+            <div className="App">
+                <h2>Movie searcher</h2>
+                <div className={"displaySize"}>
+                <DisplayMovies
+                    loading={props.loading}
+                    movies={props.movies}
+                    errorMessage={props.errorMessage}
+                />
+                </div>
             </div>
         </div>
     );

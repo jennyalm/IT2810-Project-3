@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 import './PopUp.css';
 
 class Popup extends React.Component {
@@ -6,8 +7,9 @@ class Popup extends React.Component {
         return (
             <div className='popup'>
                 <div className='popup\_inner'>
-                    <h1>{this.props.text}</h1>
-                    <button className={"popupButton"} onClick={this.props.closePopup}>close me</button>
+                    <h3>{this.props.Title} - Plot:</h3>
+                    <p>{this.props.Plot}</p>
+                    <Button className="CloseButton" color="danger" onClick={this.props.closePopup} >Close me</Button>{' '}
                 </div>
             </div>
         );
