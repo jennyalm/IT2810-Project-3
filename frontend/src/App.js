@@ -57,7 +57,6 @@ const App = (props) => {
 
     return (
         <div className="App">
-            <h1>Test</h1>
             <div>
             <Header text="React-Redux movie searcher" />
             </div>
