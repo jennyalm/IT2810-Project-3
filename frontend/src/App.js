@@ -11,13 +11,17 @@ import Header from "./components/Header/Header";
 import Search from "./components/Search/Search";
 import DisplayMovies from './components/DisplayMovies/DisplayMovies'
 
+
 // redux
 import { connect } from 'react-redux';
 import { success, failure, req, yearAsc, yearDesc } from './actions'
 
 
 // the default search when website opens, with search: s=tarzan
-const MOVIE_API_URL = "https://www.omdbapi.com/?s=tarzan&apikey=4a3b711b";
+const MOVIE_API_URL = fetch(process.env.PUBLIC_URL + "/fakeData");
+
+
+// const MOVIE_API_URL = "https://www.omdbapi.com/?s=tarzan&apikey=4a3b711b";
 
 
 const App = (props) => {
@@ -36,7 +40,9 @@ const App = (props) => {
         console.log("Attempting to search")
         props.req()
 
-        const urlToSearch = `http://localhost:4000/Product?` +((!props.movies.Title) ? '' : `&Title=${props.movies.Title}`);
+        //  http://it2810-13.idi.ntnu.no/Product
+
+        const urlToSearch = `http://localhost:4000/Product?` +((props.movies.Title) ? `&Title=${props.movies.Title}` : '');
         console.log(urlToSearch);
         axios.get(urlToSearch)
             .then(response => response.json())
@@ -51,6 +57,7 @@ const App = (props) => {
 
     return (
         <div className="App">
+            <h1>Test</h1>
             <div>
             <Header text="React-Redux movie searcher" />
             </div>

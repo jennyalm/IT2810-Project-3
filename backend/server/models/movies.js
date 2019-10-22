@@ -11,7 +11,8 @@ let ProductSchema = new mongoose.Schema({
     Type: {type: String},
     Poster: {type: String},
     Plot: {type: String},
-    Rating: {type: Number},
+    Rating: {type: Array},
+    Genre: {type: String},
 },
     {collection: "movies"})
 

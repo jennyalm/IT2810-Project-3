@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header snapshot test 1`] = `
+<header
+  className="App-header"
+>
+  <h2 />
+</header>
+`;
