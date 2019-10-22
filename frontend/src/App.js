@@ -42,7 +42,7 @@ const App = (props) => {
 
         //  http://it2810-13.idi.ntnu.no/Product
 
-        const urlToSearch = `http://localhost:4000/Product?` +((props.movies.Title) ? `&Title=${props.movies.Title}` : '');
+        const urlToSearch = `http://localhost:4000/movies?` +((props.movies.Title) ? `&Title=${props.movies.Title}` : '');
         console.log(urlToSearch);
         axios.get(urlToSearch)
             .then(response => response.json())

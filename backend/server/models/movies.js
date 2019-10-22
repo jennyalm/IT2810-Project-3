@@ -1,5 +1,7 @@
-import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate';
+// import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+// import mongoosePaginate from 'mongoose-paginate';
+const mongoosePaginate = require('mongoose-paginate');
 
 
 //Schema need to specify in mongodb for validation
@@ -24,4 +26,4 @@ module.exports=mongoose.model('movies',ProductSchema)
 
 
 
-export default ProductSchema;
+// export default ProductSchema;

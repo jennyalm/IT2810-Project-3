@@ -60,4 +60,5 @@ movies.paginate(content, {
     sort: order
 }).then(items => response.json(items));
 */
-export default router;
+// export default router;
+module.exports = router;
