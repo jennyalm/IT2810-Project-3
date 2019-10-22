@@ -32,7 +32,7 @@ router.get("/", async (request, response) => {
 
     console.log(content)
     const moviesFound = await movies.find(content);
-    // console.log(moviesFound)
+    console.log(moviesFound)
     response.json(moviesFound);
 
 });

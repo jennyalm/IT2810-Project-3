@@ -5,7 +5,7 @@
 // import Express from "express";
 const express = require('express');
 // import Mongoose from "mongoose";
-const Mongoose = require('mongoose');
+const mongoose = require('mongoose');
 // const path = require('path');
 // import BodyParser from "body-parser";
 // import router from "./server/routes/routes";
@@ -15,7 +15,7 @@ const router = require('./server/routes/routes');
 
 const app = express();
 
-Mongoose.connect("mongodb://it2810-13.idi.ntnu.no:27017/moviedb");
+mongoose.connect("mongodb://it2810-13.idi.ntnu.no:27017/moviedb");
 
 // app.get("/Product?", () => console.log("Lykkes i request"));
 app.use("/movies", router);

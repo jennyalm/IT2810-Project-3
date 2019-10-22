@@ -1,7 +1,5 @@
 // Hooks
 import React, { useEffect } from "react";
-import axios from "axios"
-
 
 // Style
 import './App.css';
@@ -11,17 +9,13 @@ import Header from "./components/Header/Header";
 import Search from "./components/Search/Search";
 import DisplayMovies from './components/DisplayMovies/DisplayMovies'
 
-
 // redux
 import { connect } from 'react-redux';
-import { success, failure, req, yearAsc, yearDesc } from './actions'
+import { success, failure, req } from './actions'
 
 
 // the default search when website opens, with search: s=tarzan
-const MOVIE_API_URL = fetch(process.env.PUBLIC_URL + "/fakeData");
-
-
-// const MOVIE_API_URL = "https://www.omdbapi.com/?s=tarzan&apikey=4a3b711b";
+const MOVIE_API_URL = `http://localhost:4000/movies?title=Tarzan`;
 
 
 const App = (props) => {
@@ -31,47 +25,32 @@ const App = (props) => {
         fetch(MOVIE_API_URL)
             .then(response => response.json())
             .then(jsonResponse => {
-                props.success(jsonResponse.Search)
+                props.success(jsonResponse)
             });
     }, []);
 
-    // The search method , må endre 12000 til riktig nummer
+    // The search method
     const search = searchValue => {
-        console.log("Attempting to search")
         props.req()
-
-        //  http://it2810-13.idi.ntnu.no/Product
-
-        const urlToSearch = `http://localhost:4000/movies?` +((props.movies.Title) ? `&Title=${props.movies.Title}` : '');
-        console.log(urlToSearch);
-        axios.get(urlToSearch)
+        fetch(`http://localhost:4000/movies?title=${searchValue}`)
             .then(response => response.json())
             .then(jsonResponse => {
-                if (jsonResponse.Response === "True") {
-                    props.success(jsonResponse.Search)
-                } else {
-                    props.failure(jsonResponse.Error)
-                }
+                props.success(jsonResponse);
             });
     };
 
     return (
+
         <div className="App">
-            <h1>Test</h1>
-            <div>
             <Header text="React-Redux movie searcher" />
-            </div>
-            <div className="searchStyle">
             <Search search={search} />
-            </div>
-            <div className={"displaySize"}>
             <DisplayMovies
                 loading={props.loading}
                 movies={props.movies}
                 errorMessage={props.errorMessage}
             />
-            </div>
         </div>
+
     );
 };
 
@@ -83,10 +62,7 @@ const App = (props) => {
 const mapStateToProps = state => ({
     loading: state.Reducer.loading,
     movies: state.Reducer.movies,
-    errorMessage: state.Reducer.errorMessage,
-    sortBy: state.SortReducer.sortBy,
-    order: state.SortReducer.order
-
+    errorMessage: state.Reducer.errorMessage
 })
 
 // dispatches to the global redux store.
@@ -94,11 +70,10 @@ const mapDispatchToProps = dispatch => {
     return {
         success: (event) => dispatch(success(event)),
         failure: (event) => dispatch(failure(event)),
-        req: () => dispatch(req()),
-        yearAsc: () => dispatch(yearAsc()),
-        yearDesc: () => dispatch(yearDesc())
+        req: () => dispatch(req())
     }
 }
+
 
 
 // connects mapStateToProps and mapDispatchToProps to App.
