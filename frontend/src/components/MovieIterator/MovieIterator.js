@@ -13,7 +13,19 @@ function MovieIterator(props){
     const displayMovies = [].concat(props.movies)
         .sort((a,b) => parseInt(b.Year) - parseInt(a.Year))
         .map((movie, index) => (
-                <Movie onClick={() => setShowPopup(true)} key={`${index}-${movie.Title}`} movie={movie} />
+                <div>
+                    <Movie onClick={() => setShowPopup(true)} key={`${index}-${movie.Title}`} movie={movie} />
+                    {showPopup ?
+                        <PopUp
+                            Title={movie.Title}
+                            closePopup={() => setShowPopup(!showPopup)}
+                            Plot={movie.Plot}
+                        />
+                    : null
+                    }
+                </div>
+        
+                
             )
         )
 
@@ -24,14 +36,6 @@ function MovieIterator(props){
     return(
         <div className={"movies"}>
             {displayMovies}
-
-            {showPopup ?
-                <PopUp
-                    text='Click "Close Button" to hide popup'
-                    closePopup={() => setShowPopup(!showPopup)}
-                />
-                : null
-            }
         </div>
     )
 
