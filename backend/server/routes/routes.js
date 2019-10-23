@@ -26,9 +26,43 @@ router.get("/product/", (request, response) => {
 
 router.get("/", async (request, response) => {
     let content = {}
+
+//variabler som trengs i paginate funksjonen. Sort angir hva som skal sorteres, order(1,-1) angir DESC eller ASC.
+// page og pages angir sidetallet og limit angir hvor mange elementer man vil vise på hver side.
+
+// Default er er satt som sortert på Year, i stigende rekkefølge. 4 filmer pr. page
+
+    let sort = request.query.sort ? request.query.sort: 'Year';
+    let order = request.query.order ? request.query.order : '1';
+    let page = request.query.page ? request.query.page : 1;
+    let pages = parseInt(page);
+    let limit = request.query.limit ? request.query.limit : 6;
+    let limits =  parseInt(limit);
+
+    //håndtere query som blir sendt inn, $regex og $options gjør det mulig å søke på deler av et ord og
+    //også søke med både upper og lowercase.
+
     if (request.query.year) { content.Year = request.query.year}
     if (request.query.title) { content.Title = {$regex : RegExp(request.query.title), $options : '-i'}}
     if (request.query.genre) { content.Genre = {$regex : RegExp(request.query.genre), $options : '-i'}}
+
+
+    //pagination plugin for mongoose. Gjør det enkelt å sortere og hente ut x antall filemr.
+    //mongoose-paginate er importert i movies.js
+    //tar inn page, limit, sort og order
+
+    movies.paginate(content,{
+        page: pages,
+        limit: limits,
+        sort: {[sort]:[order]}
+    }).then(side => {
+        console.log(side);
+        response.json(side)
+    })
+        .catch(err => {
+            response.status(500).json(err);
+        })
+
 
     console.log(content)
     const moviesFound = await movies.find(content);
@@ -39,16 +73,19 @@ router.get("/", async (request, response) => {
 
 
 
-// update rating
 router.put("/rating", (request, response) => {
-    let Movies = movies.where({
-        Title: request.body.Title
+    // finner imdbID til filmen og legger til rating i en liste som inneholder alle rating'sene for den filmen.
+    // listen Rating i movies.js
+       movies.findOneAndUpdate(
+           { imdbID: request.body.imdbID },
+           { $push: { "Rating": request.body.rating } }
+       )
+           .then(response.json("Det gikk!"))
+           .catch(err => console.log(err))
+       console.log("Result: ", request.body)
+   
     });
-    Movies
-        .findOneAndUpdate({ Movies: request.body.ratings })
-        .setOptions({ new: true })
-        .then(items => response.json(items));
-});
+   
 
 
 

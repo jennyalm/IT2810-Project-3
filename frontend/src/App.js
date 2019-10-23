@@ -25,7 +25,7 @@ const App = (props) => {
         fetch(MOVIE_API_URL)
             .then(response => response.json())
             .then(jsonResponse => {
-                props.success(jsonResponse)
+                props.success(jsonResponse.docs)
             });
     }, []);
 
@@ -35,7 +35,7 @@ const App = (props) => {
         fetch(`http://localhost:4000/movies?title=${searchValue}`)
             .then(response => response.json())
             .then(jsonResponse => {
-                props.success(jsonResponse);
+                props.success(jsonResponse.docs);
             });
     };
 
