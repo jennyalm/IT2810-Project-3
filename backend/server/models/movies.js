@@ -1,6 +1,4 @@
-// import mongoose from 'mongoose';
 const mongoose = require('mongoose');
-// import mongoosePaginate from 'mongoose-paginate';
 const mongoosePaginate = require('mongoose-paginate');
 
 
