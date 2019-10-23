@@ -1,0 +1,29 @@
+.Movie{
+
+}
+
+.Poster{
+    width: 20vw;;
+}
+
+@media only screen and (max-width: 1000px) {
+    .Poster{
+        width: 35vw;
+    }
+    
+    p, h4{
+        font-size: 2vw;
+    }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .Poster{
+        width: 60vw;
+    }
+    
+    p, h4{
+        font-size: 3vw;
+    }
+}

@@ -40,15 +40,21 @@ const App = (props) => {
     };
 
     return (
-
-        <div className="App">
-            <Header text="React-Redux movie searcher" />
-            <Search search={search} />
-            <DisplayMovies
-                loading={props.loading}
-                movies={props.movies}
-                errorMessage={props.errorMessage}
-            />
+        <div className="Content">
+            <Header text="Group 13" /> 
+            <div className="searchStyle">
+                <Search search={search} />
+            </div>
+            <div className="App">
+                <h2>Movie searcher</h2>
+                <div className={"displaySize"}>
+                <DisplayMovies
+                    loading={props.loading}
+                    movies={props.movies}
+                    errorMessage={props.errorMessage}
+                />
+                </div>
+            </div>
         </div>
 
     );
