@@ -32,7 +32,7 @@ router.get("/", async (request, response) => {
 
     console.log(content)
     const moviesFound = await movies.find(content);
-    // console.log(moviesFound)
+    console.log(moviesFound)
     response.json(moviesFound);
 
 });
@@ -60,4 +60,5 @@ movies.paginate(content, {
     sort: order
 }).then(items => response.json(items));
 */
-export default router;
+// export default router;
+module.exports = router;
