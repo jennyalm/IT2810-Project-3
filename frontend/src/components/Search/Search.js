@@ -59,6 +59,8 @@ const Search = (props) => {
     );
 }
 
+// TODO JAKOB
+
 export default Search;
 
 /*<form className="search">
