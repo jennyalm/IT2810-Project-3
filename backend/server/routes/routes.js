@@ -64,11 +64,10 @@ router.get("/", async (request, response) => {
         })
 
 
-    console.log(content)
-    const moviesFound = await movies.find(content);
-    console.log(moviesFound)
-    response.json(moviesFound);
+});
 
+router.get("/all-movies", async (req, res) => {
+   await res.json(await movies.find())
 });
 
 
