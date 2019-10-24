@@ -25,15 +25,17 @@ router.get("/product/", (request, response) => {
 });*/
 
 router.get("/", async (request, response) => {
+    try{
+
     let content = {}
 
 //variabler som trengs i paginate funksjonen. Sort angir hva som skal sorteres, order(1,-1) angir DESC eller ASC.
 // page og pages angir sidetallet og limit angir hvor mange elementer man vil vise på hver side.
 
-// Default er er satt som sortert på Year, i stigende rekkefølge. 4 filmer pr. page
+// Default er er satt som sortert på Year, i stigende rekkefølge. 6 filmer pr. page
 
     let sort = request.query.sort ? request.query.sort: 'Year';
-    let order = request.query.order ? request.query.order : '1';
+    let order = request.query.order ? request.query.order : '-1';
     let page = request.query.page ? request.query.page : 1;
     let pages = parseInt(page);
     let limit = request.query.limit ? request.query.limit : 6;
@@ -63,12 +65,9 @@ router.get("/", async (request, response) => {
             response.status(500).json(err);
         })
 
-
-    console.log(content)
-    const moviesFound = await movies.find(content);
-    console.log(moviesFound)
-    response.json(moviesFound);
-
+    } catch(err){
+        next(err)
+    }
 });
 
 
