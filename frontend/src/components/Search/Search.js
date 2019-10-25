@@ -75,7 +75,7 @@ const Search = (props) => {
                         <div className="Filter">
                             <p>filter:</p>
                             <ButtonGroup >
-                                <Button  color="info" onClick={() => callFilterFunction(props.filterAction, "action")}>Action</Button>
+                                <Button id={"action"} color="info" onClick={() => callFilterFunction(props.filterAction, "action")}>Action</Button>
                                 <Button  color="info" onClick={() => callFilterFunction(props.filterComedy, "comedy")}>Comedy</Button>
                                 <Button  color="info" onClick={() => callFilterFunction(props.filterDrama, "drama")}>Drama</Button>
                                 <Button  color="info" onClick={() => callFilterFunction(props.filterFantasy, "fantasy")}>Fantasy</Button>
@@ -88,7 +88,7 @@ const Search = (props) => {
                     </div>
                 </div>
             : <div>
-                <Button color="info" onClick={() => setShowOptions(true)} >Show options</Button>
+                <Button id="options" color="info" onClick={() => setShowOptions(true)} >Show options</Button>
             </div>    
             }
             <br/><br/>
