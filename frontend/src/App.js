@@ -83,9 +83,6 @@ const App = (props) => {
                 </div>
                 <Pages changePage={page}/>
             </div>
-            <div className="Statistics">
-                <DataVisualization/>
-            </div>
         </div>
 
     );
