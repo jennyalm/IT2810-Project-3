@@ -8,6 +8,7 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Search from "./components/Search/Search";
 import DisplayMovies from './components/DisplayMovies/DisplayMovies';
+import DataVisualization from "./components/DataVisualization/DataVisualization";
 import Pages from './components/Pages/pages';
 
 // redux
@@ -73,6 +74,9 @@ const App = (props) => {
                     />
                 </div>
                 <Pages changePage={sort}/>
+            </div>
+            <div className="Statistics">
+                <DataVisualization/>
             </div>
         </div>
 

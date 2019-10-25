@@ -1,16 +1,11 @@
-// import axios from "axios";
 
-
-//Express
-// import Express from "express";
 const express = require('express');
-// import Mongoose from "mongoose";
 const mongoose = require('mongoose');
 // const path = require('path');
 const BodyParser = require("body-parser");
 // import router from "./server/routes/routes";
 const router = require('./server/routes/routes');
-// import cors from 'cors';
+// const cors = require('cors');
 
 
 const app = express();
@@ -34,6 +29,3 @@ app.use("/movies", router);
 app.listen(4000, () => {
     console.log("Listening at http://localhost:4000/...");
 });
-
-// test
-// Nå skal det testes

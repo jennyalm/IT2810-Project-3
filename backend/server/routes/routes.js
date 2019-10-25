@@ -55,12 +55,15 @@ router.get("/", async (request, response) => {
         .catch(err => {
             response.status(500).json(err);
         })
-
+        
     } catch(err){
         next(err)
     }
 });
 
+router.get("/all-movies", async (req, res) => {
+   await res.json(await movies.find());
+});
 
 
 router.put("/:imdbID", (request, response) => {
