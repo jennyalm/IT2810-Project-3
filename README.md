@@ -30,7 +30,10 @@ Vi har blant annet brukt det til å lage ProduktSchema’et vårt: movies og til
 
 
 # Pagination & sortering/filtrering
-For sortering og sidevisning, har vi brukt en pagination plugin for mongoose: mongoose-paginate. Link til denne plugin’en finner du under kilder.
+For sortering og sidevisning, har vi brukt en pagination plugin for mongoose: mongoose-paginate. Link til denne plugin’en finner du under kilder. Sortering og filtrering skjer via pagination på backendsiden, og som redux-state og url fetching på frontendsiden. 
+Vi fetcher en url, med parametere som blir lagret i store med redux. Hvis vi endrer for eksempel type sortering, gjøres det et kall til databasen, og vi får en sortert json tilbake. Tilsvarende for filtrering. 
+
+Vi har også valgt å ha sidevisning med enkle knapper som blar igjennom sidene. Disse blir også laget med pagination på samme måte som med sortering og filtrering. 
 
 
 ## Testing
@@ -43,6 +46,34 @@ For å kjøre testene: npm cypress run(?)
 Vi benytter oss av jest for å enhetsteste prosjektet vårt. 
  For å kjøre testene skriver man npm test i terminalen. 
 
+## CSS 
+
+Vi har valgt å ha alle css filene i mappe sammen med komponenten den tilhører. Dette gjorde vi da vi følte det ble mer oversiktlig og forståelig. Vi har brukt reactstrap 3
+til å få fine knapper, input felt osv. Vi har ikke reactstrap 4 da det krasjet hver gang vi prøvde å kjøre npm install på det, men hvis vi hadde hatt bedre tid er det blant tingene vi vil prøve å forbedre. 
+Ellers i koden har vi brukt simple-react-modal, StarRatingComponent mm. Vi hadde lyst på et minimalistisk design, som var enkelt å forstå, og fint å se på, noe vi klarte ganske greit. 
+Siden er også responsiv med både nettbrett og mobil. Det er fremdeles et par ting vi har lyst til å se mer på ang responsivitet, som feks at modalen ikke er responsiv. Siden dette ikke var et krav,
+og vi rett og slett ikke har nok tid, valgte vi å heller ha det som "TODO" i fremtiden.
+
+## Skjermdump av nettsiden
+bilder:
+
+##BILDE HER 
+
+Nettsiden vår slik den ser ut uten at vi trykker på noe
+
+##BILDE HER 
+
+Etter å ha trykket på Show Options får man opp to buttongroups hvor man kan velge mellom sortering og filtrerings alternativer.
+
+##BILDE HER 
+
+Når man trykker på Database stats får man opp statsene fra databasen. Her blir alle filmene sjekket, og vi viser i form av "bobler" hvor mange filmer som tilhører til ulike tiårene.
+
+##BILDE HER 
+
+Enkel next, prev for å bla i de ulike sidene som kommer fra databasen. Her har vi også en plan om å oppgradere til å gi mer feedback ang hvilken side man er på og hvor mange det er totalt.
+Vi kan også se hvordan rating systemt fungerer. Man kan trykke på antall stjerner man ønsker å rate en film med, og etter dette får man opp average rating. Vi valgte å la average rating komme opp etterpå, 
+for å holde siden minimalistitsk og for å ikke påvirke brukeren av andre ratinger når han/hun velger å gi sin rating
 
 ## Kilder
 
