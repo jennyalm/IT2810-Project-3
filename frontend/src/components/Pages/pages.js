@@ -8,7 +8,7 @@ import './pages.css'
 
 const Pages = (props) => {
 
-    // sender inn en increment, siden state ikke oppdateres raskt nok.
+    // sends in a increment, since the state dosen't update quick enough
     const callpageFunction = (action, increment) => {
         if(props.page === 1 && action === props.prevPage){
             props.changePage(props.page)

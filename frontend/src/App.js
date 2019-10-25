@@ -31,21 +31,7 @@ const App = (props) => {
             });
     }, []);
 
-
-
-
-
-    // The search method
-    /* const search = searchValue => {
-        console.log("TEKSTEN SOM BLE SØKT PÅ I APP: "+ searchValue)
-        props.req();
-        fetch(`http://localhost:4000/movies?title=${searchValue}&order=${props.order}&sort=${props.sortBy}&page=1`)
-            .then(response => response.json())
-            .then(jsonResponse => {
-                props.success(jsonResponse.docs);
-            });
-    }; */
-
+    // send fetch request to the URL and dispatches to redux store with props.success
     const fetchUrl =  (url) => {
         props.req();
         fetch(url)
@@ -55,12 +41,11 @@ const App = (props) => {
             });
     }
 
-    // må ha egen til hver url siden statene ikke oppdateres raskt nok.
+    // Need to send in a value since the states takes a while to update
     const search = (searchValue) => fetchUrl("http://localhost:4000/movies?title="+searchValue+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+props.filterBy)
     const page = (pageNum) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+pageNum+"&genre="+props.filterBy)
     const orderResult = (orderBy, sortBy) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+orderBy+"&sort="+sortBy+"&page="+props.page+"&genre="+props.filterBy)
     const filter = (typeFilter) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+typeFilter)
-    //const sort = (sortBy) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+sortBy+"&page="+props.page)
 
 
     return (
@@ -92,7 +77,6 @@ const App = (props) => {
 
 // maps the value in the global redux store to props.
 
-// OPS!! FÅR OPP MELDING I CONSOLE, FORVENTER NOE ANNET ENN Reducer HER, MEN HVA?
 const mapStateToProps = state => ({
     loading: state.Reducer.loading,
     movies: state.Reducer.movies,

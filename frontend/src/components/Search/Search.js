@@ -7,7 +7,7 @@ import { yearAsc, yearDesc, titleAsc, titleDesc, searchValue, resetPage, filterA
 import './Search.css';
 
 const Search = (props) => {
-    const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState();
 
     const [showOptions, setShowOptions] = useState(false)
 
@@ -17,9 +17,10 @@ const Search = (props) => {
     }
 
     const resetInputField = () => {
-        setSearchValue("")
+        setSearchValue(searchValue)
     }
 
+    // calls the search function in App.js
     const callSearchFunction = (e) => {
         props.resetPage()
         props.searchValue(searchValue)
@@ -31,7 +32,7 @@ const Search = (props) => {
         resetInputField();
     }
 
-    // sender inn order og sort direkte, siden ikke statene oppdateres raskt nok
+    // We are sending in order and sort since the state don't update quick enough
     const callSortFunction = (action, orderBy, sortBy) => {
         props.orderResult(orderBy, sortBy)
         action()
@@ -42,8 +43,7 @@ const Search = (props) => {
         action()
     }
 
-
-// TODO  SEARCH ER ALT FOR BRED, SKAL FIKSES
+// buttons and input field is made with reactstrap.
     return (
         <div>
             <FormGroup>
@@ -52,7 +52,7 @@ const Search = (props) => {
                     type="search"
                     name="search"
                     id="exampleSearch"
-                    placeholder="Search: title"
+                    placeholder="tarzan"
                     value={searchValue}
                     onChange={handleSearchInputChanges}
 
