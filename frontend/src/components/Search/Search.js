@@ -31,10 +31,12 @@ const Search = (props) => {
         resetInputField();
     }
 
-    const callSortFunction = (action) => {
+    // sender inn order og sort direkte, siden ikke statene oppdateres raskt nok
+    const callSortFunction = (action, orderBy, sortBy) => {
+        props.orderResult(orderBy, sortBy)
         action()
-        props.sort()
     }
+
 
 // TODO  SEARCH ER ALT FOR BRED, SKAL FIKSES
     return (
@@ -59,10 +61,10 @@ const Search = (props) => {
                         <div className="Sort">
                             <p>sort</p>
                             <ButtonGroup >
-                                <Button color="info" onClick={() => callSortFunction(props.titleAsc)}>Title A-Z</Button>
-                                <Button color="info" onClick={() => callSortFunction(props.titleDesc)}>Title Z-A</Button>
-                                <Button color="info" onClick={() => callSortFunction(props.yearAsc)}>New - Old</Button>
-                                <Button color="info" onClick={() => callSortFunction(props.yearDesc)}>Old - New</Button>
+                                <Button color="info" onClick={() => callSortFunction(props.titleAsc, "1", "Title")}>Title A-Z</Button>
+                                <Button color="info" onClick={() => callSortFunction(props.titleDesc, "-1", "Title")}>Title Z-A</Button>
+                                <Button color="info" onClick={() => callSortFunction(props.yearAsc, "-1", "Year")}>New - Old</Button>
+                                <Button color="info" onClick={() => callSortFunction(props.yearDesc, "1", "Year")}>Old - New</Button>
                             </ButtonGroup>
                         </div>
                         <div className="Filter">
@@ -74,6 +76,7 @@ const Search = (props) => {
                         </div>
                         <br/>
                         <Button color="danger" onClick={() => setShowOptions(false)}>Hide options</Button>
+                    
                     </div>
                 </div>
             : <div>
