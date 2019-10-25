@@ -28,10 +28,11 @@ class Movie extends React.Component { //= ({ movie, onClick}) => {
         this.setState({canGiveRating: false})
         console.log("Rating: " + nextValue)
 
+
         // put the content in the database
         // it finds the movie in the database with imdbID then places the rating under Rating which is an array.
-        axios.put("http://localhost:4000/movies/" + this.props.imdbID, content)
-        console.log("localhost:4000/movies/" + this.props.imdbID)
+        axios.put("http://it2810-13.idi.ntnu.no:4000/movies/" + this.props.imdbID, content)
+        console.log("http://it2810-13.idi.ntnu.no:4000/movies/" + this.props.imdbID)
     }
     
     render(){

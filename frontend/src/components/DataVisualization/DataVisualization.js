@@ -28,8 +28,8 @@ let data = [
 // The array of years is iterated over to update the value in data corresponding to the correct decade.
 const fetchData = async () => {
     let years = [];
-
-    await fetch(`http://localhost:4000/movies/all-movies`)
+    
+    await fetch(`http://it2810-13.idi.ntnu.no:4000/movies/all-movies`)
         .then(res => res.json())
         .then(jsonResponse => {
             years = jsonResponse.map(a => a.Year);

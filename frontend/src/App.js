@@ -17,7 +17,7 @@ import { success, failure, req, searchValue } from './actions'
 
 
 // the default search when website opens, with search: s=tarzan
-const MOVIE_API_URL = `http://localhost:4000/movies?title=Tarzan&order=-1&sort=Year&page=1`;
+const MOVIE_API_URL = `http://it2810-13.idi.ntnu.no:4000/movies?title=Tarzan&order=-1&sort=Year&page=1`;
 
 
 const App = (props) => {
@@ -40,12 +40,13 @@ const App = (props) => {
                 props.success(jsonResponse.docs);
             });
     }
+    
 
     // Need to send in a value since the states takes a while to update
-    const search = (searchValue) => fetchUrl("http://localhost:4000/movies?title="+searchValue+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+props.filterBy)
-    const page = (pageNum) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+pageNum+"&genre="+props.filterBy)
-    const orderResult = (orderBy, sortBy) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+orderBy+"&sort="+sortBy+"&page="+props.page+"&genre="+props.filterBy)
-    const filter = (typeFilter) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+typeFilter)
+    const search = (searchValue) => fetchUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+searchValue+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+props.filterBy)
+    const page = (pageNum) => fetchUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+pageNum+"&genre="+props.filterBy)
+    const orderResult = (orderBy, sortBy) => fetchUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+props.searchText+"&order="+orderBy+"&sort="+sortBy+"&page="+props.page+"&genre="+props.filterBy)
+    const filter = (typeFilter) => fetchUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+typeFilter)
 
 
     return (
