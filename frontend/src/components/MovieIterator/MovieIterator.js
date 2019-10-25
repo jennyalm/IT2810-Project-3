@@ -10,16 +10,25 @@ function MovieIterator(props){
 
     const [showPopup, setShowPopup] = useState(false);
 
-    const displayMovies = [].concat(props.movies)
-        .sort((a,b) => parseInt(b.Year) - parseInt(a.Year))
+
+    // added keys to every child component to get rid of a error in the console.
+
+    const displayMovies = (props.movies)
         .map((movie, index) => (
-                <div>
-                    <Movie onClick={() => setShowPopup(true)} key={`${index}-${movie.Title}`} movie={movie} />
+                <div key={movie._id} >
+                    <Movie 
+                        onClick={() => setShowPopup(true)} 
+                        key={movie._id} 
+                        movie={movie}
+                        imdbID = {movie.imdbID} 
+                        />
+
                     {showPopup ?
                         <PopUp
                             Title={movie.Title}
                             closePopup={() => setShowPopup(!showPopup)}
-                            Plot={movie.Plot}
+                            Plot={movie.plot}
+                            key={movie._id}
                         />
                     : null
                     }

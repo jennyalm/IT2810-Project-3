@@ -26,9 +26,10 @@ const reducer = (state = initialState, action) => {
                 errorMessage: action.error
             };
         default:
-            return {
+            return{
                 ...state,
                 loading: true,
+                movies: [],
                 errorMessage: null
             }
     }

@@ -1,22 +1,26 @@
+.Options{
+    background-color: #243035;
+}
+
 .Search{
     width: 100%;
 }
 
 .DisplayOptions{
     display: grid;
-    grid-template-columns: [right] 1fr [middle] 1fr [left];
+    grid-template-rows: [top] 1fr [middle] 1fr [bottom];
 }
 
 .Sort{
     width:100%;
-    grid-column-start: right;
-    grid-column-end: middle;
+    grid-row-start: top;
+    grid-row-end: middle;
 }
 
 .Filter{
     width:100%;
-    grid-column-start: middle;
-    grid-column-end: left;
+    grid-row-start: middle;
+    grid-row-end: bottom;
 }
 
 @media only screen and (max-width: 600px) {
