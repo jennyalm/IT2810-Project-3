@@ -4,26 +4,17 @@ const movies = require("../models/movies");
 
 const router = express.Router();
 
-//hvis server og client kjører på ulike ports, fikser vi dette her
 
-
-/*
-router.get("/product/", (request, response) => {
-    //tom find metode vil hente ut alt.
-    movies.find({ Title: request.query.Title }).then(items =>
-        response.json(items)
-    );
-});*/
 
 router.get("/", async (request, response) => {
     try{
 
     let content = {}
 
-//variabler som trengs i paginate funksjonen. Sort angir hva som skal sorteres, order(1,-1) angir DESC eller ASC.
-// page og pages angir sidetallet og limit angir hvor mange elementer man vil vise på hver side.
+// variables which need paginate. Sort is what we sort by, order(1, -1) is DESC or ASC
+// page and pages is the page num, limit is how many elements we show on each page.
 
-// Default er er satt som sortert på Year, i stigende rekkefølge. 6 filmer pr. page
+// default is sort on year in desc with maximum 6 movies on each page
 
    
     let sort = request.query.sort ? request.query.sort: 'Year';
@@ -33,17 +24,17 @@ router.get("/", async (request, response) => {
     let limit = request.query.limit ? request.query.limit : 6;
     let limits =  parseInt(limit);
 
-    //håndtere query som blir sendt inn, $regex og $options gjør det mulig å søke på deler av et ord og
-    //også søke med både upper og lowercase.
+
+    // handle queries, $regex and $options makes it possible to search for parts of a word and use both lower and uppercase
 
     if (request.query.year) { content.Year = request.query.year}
     if (request.query.title) { content.Title = {$regex : RegExp(request.query.title), $options : '-i'}}
     if (request.query.genre) { content.Genre = {$regex : RegExp(request.query.genre), $options : '-i'}}
     
 
-    //pagination plugin for mongoose. Gjør det enkelt å sortere og hente ut x antall filemr.
-    //mongoose-paginate er importert i movies.js
-    //tar inn page, limit, sort og order
+    // pagination plugin for mongoose. Makes it easier to sort and get x amount of movies.
+    // mongoose-paginate is imported in movies.js
+    // takes in page, limit, sort and order.
 
     movies.paginate(content,{
         page: pages,
@@ -71,8 +62,9 @@ router.get("/all-movies", async (req, res) => {
 
 
 router.put("/:imdbID", (request, response) => {
-    // finner imdbID til filmen og legger til rating i en liste som inneholder alle rating'sene for den filmen.
-    // listen Rating i movies.js
+    
+    // find the imdbID for the movie, and adds a rating to Rating
+
     console.log(request.params)
        movies.findOneAndUpdate(
            { imdbID: request.params.imdbID },
@@ -85,15 +77,4 @@ router.put("/:imdbID", (request, response) => {
     });
    
 
-
-
-//antall filmer per side = 10
-/*
-movies.paginate(content, {
-    page: request.query.page,
-    limit: 10,
-    sort: order
-}).then(items => response.json(items));
-*/
-// export default router;
 module.exports = router;

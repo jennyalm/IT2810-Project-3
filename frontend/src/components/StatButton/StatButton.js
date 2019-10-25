@@ -3,24 +3,8 @@ import './StatButton.css'
 import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
 import DataVisualization from "../DataVisualization/DataVisualization";
 
-/*
-let movieAmount = 0;
-
-const fetchAmount = async () => {
-    let movies = [];
-    await fetch(`http://localhost:4000/movies/all-movies`)
-        .then(res => res.json())
-        .then(jsonResponse => {
-            movies = jsonResponse.map(a => a.Year);
-            console.log(movies);
-        })
-
-    movieAmount += movies.length;
-}
-*/
+// creates the stats on top of our page. Stats are in DataVisulization
 const StatToggle = () => (
-
-
 
             <div className="wrapper">
                 <Button color="primary" id="toggler" style={{marginBottom: '1rem'}}>

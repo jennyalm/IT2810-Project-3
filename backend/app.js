@@ -11,19 +11,17 @@ const router = require('./server/routes/routes');
 const app = express();
 app.use(BodyParser.json())
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // '*' tillater alle tilgang, men kan endres hvis man vil begrense adgang
+    // allows CORS, backend and frontend on different ports
+    res.header('Access-Control-Allow-Origin', '*'); // '*' allows everyone access, can be changed if we want
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept' );
-
-    // fjernet if Options 
     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    
     
     next();
 });
 
 mongoose.connect("mongodb://it2810-13.idi.ntnu.no:27017/moviedb");
 
-// app.get("/Product?", () => console.log("Lykkes i request"));
+
 app.use("/movies", router);
 
 app.listen(4000, () => {

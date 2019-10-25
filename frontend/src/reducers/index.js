@@ -7,7 +7,7 @@ import filterReducer from './filterReducer';
 
 import { combineReducers } from 'redux';
 
-
+// combine every reducer with combineReducers
 const rootReducer = combineReducers({
     Reducer: reducer,
     SortReducer: sortReducer,

@@ -9,11 +9,11 @@ function MovieIterator(props){
 
     const [show, setShow] = useState(false);
 
+
+    // states to the modal/popup
     const [title, setTitle] = useState("");
     const [plot, setPlot] = useState("");
     const [genre, setGenre] = useState("")
-
-    // added keys to every child component to get rid of a error in the console.
     
     const callPopup = (t, p, g) => {
         setShow(!show)
@@ -36,6 +36,7 @@ function MovieIterator(props){
         alignContent: "center"
     }
 
+    // maps every movie in movies and creates a movie component for each.
     const displayMovies = (props.movies)
         .map((movie, index) => (
                 <div key={movie._id} >
@@ -45,18 +46,14 @@ function MovieIterator(props){
                         movie={movie}
                         imdbID = {movie.imdbID} 
                         />
-
-                    
                 </div>
-        
-                
             )
         )
 
 
 
 
-
+    // the Modal is a simple-react-modal module.
     return(
         <div className="contrainer">
             <Modal 
@@ -82,11 +79,3 @@ function MovieIterator(props){
 }
 
 export default MovieIterator
-
-
-/* const displayMovies = [].concat(props.movies)
-        .sort((a,b) => a.Year > b.Year)
-        .map((movies.js, index) => (
-            <Movie key={`${index}-${movies.js.Title}`} movies.js={movies.js} />
-        )
-    ) */

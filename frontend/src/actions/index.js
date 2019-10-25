@@ -1,3 +1,5 @@
+// creates the action for dispatching to redux-store
+
 export const success = (search) => {
     return{
         type: 'SEARCH_MOVIES_SUCCESS',

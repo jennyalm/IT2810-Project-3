@@ -5,7 +5,8 @@ import { ClipLoader } from 'react-spinners';
 function DisplayMovies(props){
     
 
-
+// if props.loading and no error message, display the movieIterator
+// else, display a loading spinner
     return(
         <div>
             <div>

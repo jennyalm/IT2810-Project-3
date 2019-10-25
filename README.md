@@ -1,68 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project-3 -  Gruppe 13
+## Vår løsning
+Vi har valgt å lage en web applikasjon hvor det er mulig å søke på ulike filmer, og få informasjon om disse. 
+Det skal også være mulig å gi en rating på hver film. Brukeren har mulighet til å sortere filmer på år og tittel, og filtrere på sjangere.
 
-## Available Scripts
+## React-redux
+Vi har valgt å bruke react Redux fremfor Mobux, da redux er bedre dokumentert, og dermed er lettere å sette seg inn i. 
+Redux er et verktøy for å håndtere  states. Redux lagrer alle tilstandene globalt og i en store. 
 
-In the project directory, you can run:
+![alt text](Skjermbilde6.PNG)
 
-### `npm start`
+Vi har alle reducerene våre i mappen reducers, som blir satt sammen i index.js med combineReducers også i mappen. 
+I index.js i actions mappen blir alle funksjonene opprettet. I src/index.js oppretter vi en store ved createStore, 
+i denne har vi lagt inn redux devtools extension som har vært et fantastisk verktøy og hjulpet oss masse. 
+Vi har brukt mapStateToProps og mapDispatchToProps for å dispatche og hente ut tilstander til/fra store. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## MongoDB
+Databasen vi har valgt å bruke i dette prosjektet er mongoDB. MongoDB er et NoSQL-databaseprogram, og er godt dokumentert, 
+som gjør det lett for oss som utviklere å bruke den.  Vi har opprettet en moviedb, som inneholder alle filmene, 
+brukerne kan søke på. Oppsettet på hver film:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![alt text](Skjermbilde5.PNG)
 
-### `npm test`
+## REST Api
+# express & mongoose
+Vi bruker express, som er et javascript rammeverk for node.js. Express “minimal & flexible” og gjør det lett og raskt å lage et robust API. 
+Applikasjonen vår kjører på port 4000 og tillater requests fra alle. Ikke så bra sikkerhetsmessig, men var ikke et krav i oppgaven. 
+Til MongoDB har vi brukt mongoose, som er et modeleringsverktøy designet for å jobbe i et asynkront miljø. 
+Vi har blant annet brukt det til å lage ProduktSchema’et vårt: movies og til Paginate for sortering og sidevisning. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+# Pagination & sortering/filtrering
+For sortering og sidevisning, har vi brukt en pagination plugin for mongoose: mongoose-paginate. Link til denne plugin’en finner du under kilder. Sortering og filtrering skjer via pagination på backendsiden, og som redux-state og url fetching på frontendsiden. 
+Vi fetcher en url, med parametere som blir lagret i store med redux. Hvis vi endrer for eksempel type sortering, gjøres det et kall til databasen, og vi får en sortert json tilbake. Tilsvarende for filtrering. 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Vi har også valgt å ha sidevisning med enkle knapper som blar igjennom sidene. Disse blir også laget med pagination på samme måte som med sortering og filtrering. 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Testing
+# Cypress
 
-### `npm run eject`
+Vi benytter oss av cypress for automatisert end-to-end testing av prosjektet.
+For å kjøre testene: npm cypress run(?)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Jest
+Vi benyttet Jest tester underveis i prosjektet for å enhetsteste prosjektet vårt. For å kjøre testene skriver man npm test i terminalen inne i frontend.
+Mot slutten av prosjektet har vi brukt cypress tester. 
+ 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## CSS 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Vi har valgt å ha alle css filene i mappe sammen med komponenten den tilhører. Dette gjorde vi da vi følte det ble mer oversiktlig og forståelig. Vi har brukt reactstrap 3
+til å få fine knapper, input felt osv. Vi har ikke reactstrap 4 da det krasjet hver gang vi prøvde å kjøre npm install på det, men hvis vi hadde hatt bedre tid er det blant tingene vi vil prøve å forbedre. 
+Ellers i koden har vi brukt simple-react-modal, StarRatingComponent mm. Vi hadde lyst på et minimalistisk design, som var enkelt å forstå, og fint å se på, noe vi klarte ganske greit. 
+Siden er også responsiv med både nettbrett og mobil. Det er fremdeles et par ting vi har lyst til å se mer på ang responsivitet, som feks at modalen ikke er responsiv. Siden dette ikke var et krav,
+og vi rett og slett ikke har nok tid, valgte vi å heller ha det som "TODO" i fremtiden.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Skjermdump av nettsiden
+bilder:
 
-## Learn More
+![alt text](Skjermbilde1.PNG)
+Nettsiden vår slik den ser ut uten at vi trykker på noe
+<br/><br/><br/><br/>
+![alt text](Skjermbilde2.PNG)
+Etter å ha trykket på Show Options får man opp to buttongroups hvor man kan velge mellom sortering og filtrerings alternativer.
+<br/><br/><br/><br/>
+![alt text](Skjermbilde3.PNG)
+Når man trykker på Database stats får man opp statsene fra databasen. Her blir alle filmene sjekket, og vi viser i form av "bobler" hvor mange filmer som tilhører til ulike tiårene.
+<br/><br/><br/><br/>
+![alt text](Skjermbilde4.PNG) 
+Enkel next, prev for å bla i de ulike sidene som kommer fra databasen. Her har vi også en plan om å oppgradere til å gi mer feedback ang hvilken side man er på og hvor mange det er totalt.
+Vi kan også se hvordan rating systemt fungerer. Man kan trykke på antall stjerner man ønsker å rate en film med, og etter dette får man opp average rating. Vi valgte å la average rating komme opp etterpå, 
+for å holde siden minimalistitsk og for å ikke påvirke brukeren av andre ratinger når han/hun velger å gi sin rating
+<br/><br/>
+## Kilder
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+*  [Youtube serie om REST Api (video 1-6):](https://www.youtube.com/watch?v=0oXYLzuucwE&list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q)
+*  [Mongoose paginate:](https://www.npmjs.com/package/mongoose-paginate)
+*  [Testet med omdbapi før vi hadde serveren oppe](http://www.omdbapi.com/)
+*  [Guide til backend](https://www.robinwieruch.de/minimal-node-js-babel-setup?fbclid=IwAR3LhI0rajfUEFNTLRUmvGsZmTpbZE5WOY4_4QjLKist7L1hG2Nassdnrqo)
+*  [Guide for end-to-end testing med cypress](https://www.robinwieruch.de/react-testing-cypress?fbclid=IwAR0mR3f2WNR2hH0IStmhCVbxEbwKm66QOU1NY6HZbbLkb2FNA_WqRBuzzIE)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
