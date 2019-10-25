@@ -1,7 +1,7 @@
 ## Project-3 -  Gruppe 13
 ## Vår løsning
 Vi har valgt å lage en web applikasjon hvor det er mulig å søke på ulike filmer, og få informasjon om disse. 
-Det skal også være mulig å gi en rating på hver film. Brukeren har mulighet til å sortere filmer på år og tittel, og filtrere på sjangere.
+Det skal også være mulig å gi en rating på hver film. Brukeren vil etter å ha gitt sin rating, kunne se gjennomsnittlig rating for filmen. Brukeren har mulighet til å sortere filmer på år og tittel, og filtrere på sjangere.
 
 ## React-redux
 Vi har valgt å bruke react Redux fremfor Mobux, da redux er bedre dokumentert, og dermed er lettere å sette seg inn i. 
@@ -22,7 +22,7 @@ brukerne kan søke på. Oppsettet på hver film:
 ![alt text](Skjermbilde5.PNG)
 
 ## REST Api
-# express & mongoose
+# Node.js, express & mongoose
 Vi bruker express, som er et javascript rammeverk for node.js. Express “minimal & flexible” og gjør det lett og raskt å lage et robust API. 
 Applikasjonen vår kjører på port 4000 og tillater requests fra alle. Ikke så bra sikkerhetsmessig, men var ikke et krav i oppgaven. 
 Til MongoDB har vi brukt mongoose, som er et modeleringsverktøy designet for å jobbe i et asynkront miljø. 
@@ -36,10 +36,13 @@ Vi fetcher en url, med parametere som blir lagret i store med redux. Hvis vi end
 Vi har også valgt å ha sidevisning med enkle knapper som blar igjennom sidene. Disse blir også laget med pagination på samme måte som med sortering og filtrering. 
 
 
+
 ## Testing
+Generelt gjennom utviklingen har vi fokusert på brukertesting, men har også involvert Jest og Cypress.
+
 # Cypress
 
-Vi benytter oss av cypress for automatisert end-to-end testing av prosjektet.
+Vi benytter oss av cypress for automatisert end-to-end testing av prosjektet. Den går gjennom om noen av de mest sentrale funksjonene på side, og sørger for at vi får riktig respons.
 For å kjøre testene: npm run test:cypress
 
 # Jest
