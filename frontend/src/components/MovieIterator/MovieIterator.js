@@ -19,7 +19,8 @@ function MovieIterator(props){
                     <Movie 
                         onClick={() => setShowPopup(true)} 
                         key={movie._id} 
-                        movie={movie} 
+                        movie={movie}
+                        imdbID = {movie.imdbID} 
                         />
 
                     {showPopup ?

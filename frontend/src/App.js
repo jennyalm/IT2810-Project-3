@@ -16,7 +16,7 @@ import { success, failure, req, searchValue } from './actions'
 
 
 // the default search when website opens, with search: s=tarzan
-const MOVIE_API_URL = `http://localhost:4000/movies?title=Tarzan&order=-1&sort=Year&page=1`;
+const MOVIE_API_URL = `http://localhost:4000/movies?title=Die&order=-1&sort=Year&page=1`;
 
 
 const App = (props) => {

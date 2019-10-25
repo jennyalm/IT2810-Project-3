@@ -5,16 +5,7 @@ const movies = require("../models/movies");
 const router = express.Router();
 
 //hvis server og client kjører på ulike ports, fikser vi dette her
-router.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // '*' tillater alle tilgang, men kan endres hvis man vil begrense adgang
-    res.header('Access-Control-Allow-Header', 'Origin, X-Requested-With, Content-Type, Accept');
 
-    if (req.method === 'OPTIONS'){
-        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-        return res.status(200).json({});
-    }
-    next();
-});
 
 /*
 router.get("/product/", (request, response) => {
@@ -72,11 +63,12 @@ router.get("/", async (request, response) => {
 
 
 
-router.put("/rating", (request, response) => {
+router.put("/:imdbID", (request, response) => {
     // finner imdbID til filmen og legger til rating i en liste som inneholder alle rating'sene for den filmen.
     // listen Rating i movies.js
+    console.log(request.params)
        movies.findOneAndUpdate(
-           { imdbID: request.body.imdbID },
+           { imdbID: request.params.imdbID },
            { $push: { "Rating": request.body.rating } }
        )
            .then(response.json("Det gikk!"))
