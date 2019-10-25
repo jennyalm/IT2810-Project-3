@@ -1,12 +1,20 @@
-.App-header {
+.header {
     background-color: #1c272b;
     min-height: 10vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-content: center;
     padding-left: 2vw;
     color: white;
     letter-spacing: 1vh;
-    font-size: 200%;
   }
 
+.App-header {
+    align-self: center;
+}
+
+.toggle {
+    align-self: center;
+    width: 100%;
+    letter-spacing: .3vh;
+}

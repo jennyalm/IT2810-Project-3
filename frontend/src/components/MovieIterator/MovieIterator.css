@@ -1,8 +1,25 @@
+.container{
+    justify-content: center;
+    align-content: center;
+}
+
 .movies{
     display: grid;
     grid-column-gap: 0%;
     grid-row-gap: 0%;
     grid-template-columns: repeat(3, 1fr);
+}
+
+.popup{
+    color: white;
+    width: 500px;
+    height: 500px;
+}
+.button{
+    position: absolute;
+    bottom: 5%;
+    left: 25%;
+    width: 50%;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -12,6 +29,9 @@
         grid-row-gap: 0%;
         grid-template-columns: repeat(2, 1fr);
     }
+    .popup{
+        font-size: .5vh;
+    }
   }
 
 @media only screen and (max-width: 600px) {
@@ -20,5 +40,8 @@
         grid-column-gap: 0%;
         grid-row-gap: 0%;
         grid-template-columns: repeat(1, 1fr);
+    }
+    .popup{
+        font-size: .5vh;
     }
   }

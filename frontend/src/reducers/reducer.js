@@ -22,13 +22,13 @@ const reducer = (state = initialState, action) => {
         case "SEARCH_MOVIES_FAILURE":
             return {
                 ...state,
-                loading: false,
+                loading: true,
                 errorMessage: action.error
             };
         default:
             return{
                 ...state,
-                loading: true,
+                loading: false,
                 movies: [],
                 errorMessage: null
             }

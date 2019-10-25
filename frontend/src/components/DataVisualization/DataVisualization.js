@@ -28,12 +28,11 @@ let data = [
 // The array of years is iterated over to update the value in data corresponding to the correct decade.
 const fetchData = async () => {
     let years = [];
-
-    await fetch(`http://localhost:4000/movies/all-movies`)
+    
+    await fetch(`http://it2810-13.idi.ntnu.no:4000/movies/all-movies`)
         .then(res => res.json())
         .then(jsonResponse => {
             years = jsonResponse.map(a => a.Year);
-            console.log("Years: " + years);
         });
 
     let year;
@@ -61,14 +60,11 @@ const fetchData = async () => {
         }
     }
 
-    console.log("data after for loop: ");
-    console.log(data);
-
 };
 
 export default class DataVisualization extends PureComponent {
 
-    // Renders the small "pop up" that appears when hovering over a "bubble"
+    // Renders ToolTip that appears when hovering over a "bubble"
     renderTooltip = (props) => {
         const { active, payload } = props;
 
@@ -77,7 +73,7 @@ export default class DataVisualization extends PureComponent {
 
             return (
                 <div style={{
-                    backgroundColor: '#fff', border: '1px solid #999', margin: 0, padding: 10,
+                    backgroundColor: '#fff', border: '1px solid #999', margin: 0, padding: 10, color: "black"
                 }}
                 >
                     <p>Decade: {data.decade}</p>
@@ -93,8 +89,6 @@ export default class DataVisualization extends PureComponent {
 
     render() {
         fetchData();
-        console.log("data in render: ");
-        console.log(data);
         return (
             <div>
                 <ResponsiveContainer width={"90%"} height={80}>
@@ -102,7 +96,7 @@ export default class DataVisualization extends PureComponent {
                         top: 20, right: 0, bottom: 0, left: 0,
                     }}>
                         <XAxis dataKey={"decade"} interval={0} />
-                        <YAxis type={"number"} dataKey={"index"} height={10} width={80}
+                        <YAxis type={"number"} dataKey={"index"}
                                tick={false} tickLine={false} axisLine={false} />
                         <ZAxis type="number" dataKey="value" range={[0, 500]} />
                         <Tooltip cursor={{ strokeDasharray: '3 3' }} wrapperStyle={{ zIndex: 100 }} content={this.renderTooltip} />

@@ -17,7 +17,7 @@ import { success, failure, req, searchValue } from './actions'
 
 
 // the default search when website opens, with search: s=tarzan
-const MOVIE_API_URL = `http://localhost:4000/movies?title=Die&order=-1&sort=Year&page=1`;
+const MOVIE_API_URL = `http://it2810-13.idi.ntnu.no:4000/movies?title=Tarzan&order=-1&sort=Year&page=1`;
 
 
 const App = (props) => {
@@ -31,24 +31,10 @@ const App = (props) => {
             });
     }, []);
 
-
-
-
-
-    // The search method
-    const search = searchValue => {
-        console.log("TEKSTEN SOM BLE SØKT PÅ I APP: "+ searchValue)
+    // send fetch request to the URL and dispatches to redux store with props.success
+    const fetchUrl =  (url) => {
         props.req();
-        fetch(`http://localhost:4000/movies?title=${searchValue}&order=${props.order}&sort=${props.sortBy}&page=1`)
-            .then(response => response.json())
-            .then(jsonResponse => {
-                props.success(jsonResponse.docs);
-            });
-    };
-
-    const sort = () => {
-        props.req();
-        fetch(`http://localhost:4000/movies?title=${props.searchText}&order=${props.order}&sort=${props.sortBy}&page=${props.page}`)
+        fetch(url)
             .then(response => response.json())
             .then(jsonResponse => {
                 props.success(jsonResponse.docs);
@@ -56,13 +42,21 @@ const App = (props) => {
     }
     
 
+    // Need to send in a value since the states takes a while to update
+    const search = (searchValue) => fetchUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+searchValue+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+props.filterBy)
+    const page = (pageNum) => fetchUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+pageNum+"&genre="+props.filterBy)
+    const orderResult = (orderBy, sortBy) => fetchUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+props.searchText+"&order="+orderBy+"&sort="+sortBy+"&page="+props.page+"&genre="+props.filterBy)
+    const filter = (typeFilter) => fetchUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+typeFilter)
+
+
     return (
         <div className="Content">
             <Header text="Group 13" /> 
             <div className="searchStyle">
                 <Search 
                     search={search} 
-                    sort={sort}
+                    orderResult={orderResult}
+                    filter={filter}
                 />
             </div>
             <div className="App">
@@ -73,10 +67,7 @@ const App = (props) => {
                         errorMessage={props.errorMessage}
                     />
                 </div>
-                <Pages changePage={sort}/>
-            </div>
-            <div className="Statistics">
-                <DataVisualization/>
+                <Pages changePage={page}/>
             </div>
         </div>
 
@@ -87,7 +78,6 @@ const App = (props) => {
 
 // maps the value in the global redux store to props.
 
-// OPS!! FÅR OPP MELDING I CONSOLE, FORVENTER NOE ANNET ENN Reducer HER, MEN HVA?
 const mapStateToProps = state => ({
     loading: state.Reducer.loading,
     movies: state.Reducer.movies,
@@ -95,7 +85,8 @@ const mapStateToProps = state => ({
     searchText: state.SearchReducer.search,
     order: state.SortReducer.order,
     sortBy: state.SortReducer.sortBy,
-    page: state.PageReducer.page
+    page: state.PageReducer.page,
+    filterBy: state.FilterReducer.filterBy
 })
 
 // dispatches to the global redux store.

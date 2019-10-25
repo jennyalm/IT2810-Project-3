@@ -23,21 +23,24 @@ class Movie extends React.Component { //= ({ movie, onClick}) => {
             "rating": nextValue
         }
 
-
+        // can't give rating to the same movie twice, hence canGiveRating
         this.setState({rating: nextValue})
         this.setState({canGiveRating: false})
         console.log("Rating: " + nextValue)
 
 
-        axios.put("http://localhost:4000/movies/" + this.props.imdbID, content)
-        console.log("localhost:4000/movies/" + this.props.imdbID)
+        // put the content in the database
+        // it finds the movie in the database with imdbID then places the rating under Rating which is an array.
+        axios.put("http://it2810-13.idi.ntnu.no:4000/movies/" + this.props.imdbID, content)
+        console.log("http://it2810-13.idi.ntnu.no:4000/movies/" + this.props.imdbID)
     }
     
     render(){
+        // display poster, or a placeholder
         const poster =  this.props.movie.Poster === "N/A" ? DEFAULT_PLACEHOLDER_IMAGE : this.props.movie.Poster;
-
         const { rating } = this.state;
-
+        
+        // calculates average rating
         const averageRating = arr => parseFloat(arr.reduce((p,c) => p + c, 0) / (arr.length)).toFixed(1); 
 
         return (
@@ -56,8 +59,9 @@ class Movie extends React.Component { //= ({ movie, onClick}) => {
                 <p>({this.props.movie.Year})</p>
 
 
-            </div>
 
+            </div>
+            
             <StarRatingComponent
                 name={this.props.movie.Title} /* name of the radio input, it is required */
                 emptyStarColor="grey"
