@@ -58,23 +58,19 @@ og vi rett og slett ikke har nok tid, valgte vi å heller ha det som "TODO" i fr
 bilder:
 
 ![alt text](Skjermbilde1.PNG)
-
 Nettsiden vår slik den ser ut uten at vi trykker på noe
-
+<br/><br/><br/><br/>
 ![alt text](Skjermbilde2.PNG)
-
 Etter å ha trykket på Show Options får man opp to buttongroups hvor man kan velge mellom sortering og filtrerings alternativer.
-
+<br/><br/><br/><br/>
 ![alt text](Skjermbilde3.PNG)
-
 Når man trykker på Database stats får man opp statsene fra databasen. Her blir alle filmene sjekket, og vi viser i form av "bobler" hvor mange filmer som tilhører til ulike tiårene.
-
+<br/><br/><br/><br/>
 ![alt text](Skjermbilde4.PNG) 
-
 Enkel next, prev for å bla i de ulike sidene som kommer fra databasen. Her har vi også en plan om å oppgradere til å gi mer feedback ang hvilken side man er på og hvor mange det er totalt.
 Vi kan også se hvordan rating systemt fungerer. Man kan trykke på antall stjerner man ønsker å rate en film med, og etter dette får man opp average rating. Vi valgte å la average rating komme opp etterpå, 
 for å holde siden minimalistitsk og for å ikke påvirke brukeren av andre ratinger når han/hun velger å gi sin rating
-
+<br/><br/>
 ## Kilder
 
 *  [Youtube serie om REST Api (video 1-6):](https://www.youtube.com/watch?v=0oXYLzuucwE&list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q)
