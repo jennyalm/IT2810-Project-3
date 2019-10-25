@@ -56,6 +56,7 @@ class Movie extends React.Component { //= ({ movie, onClick}) => {
                 <p>({this.props.movie.Year})</p>
 
 
+
             </div>
 
             <StarRatingComponent

@@ -15,7 +15,8 @@
     "react-test-renderer": "^16.10.2",
     "reactstrap": "^8.1.1",
     "recharts": "^1.8.5",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "simple-react-modal": "^0.5.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -66,4 +66,30 @@ export const resetPage = () => {
     }
 }
 
+export const filterAction = () => {
+    return{
+        type: 'FILTER_ACTION'
+    }
+}
+export const filterComedy = () => {
+    return{
+        type: 'FILTER_COMEDY'
+    }
+}
+export const filterDrama = () => {
+    return{
+        type: 'FILTER_DRAMA'
+    }
+}
+export const filterFantasy = () => {
+    return{
+        type: 'FILTER_FANTASY'
+    }
+}
+export const filterThriller = () => {
+    return{
+        type: 'FILTER_THRILLER'
+    }
+}
+
 
