@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormGroup, Input, ButtonGroup } from 'reactstrap';
 import { connect } from 'react-redux';
-import { yearAsc, yearDesc, titleAsc, titleDesc, searchValue, resetPage } from '../../actions'
+import { yearAsc, yearDesc, titleAsc, titleDesc, searchValue, resetPage, filterAction, filterComedy, filterDrama, filterFantasy, filterThriller } from '../../actions'
 
 
 import './Search.css';
@@ -34,6 +34,11 @@ const Search = (props) => {
     // sender inn order og sort direkte, siden ikke statene oppdateres raskt nok
     const callSortFunction = (action, orderBy, sortBy) => {
         props.orderResult(orderBy, sortBy)
+        action()
+    }
+
+    const callFilterFunction = (action, filterBy) => {
+        props.filter(filterBy)
         action()
     }
 
@@ -70,8 +75,11 @@ const Search = (props) => {
                         <div className="Filter">
                             <p>filter:</p>
                             <ButtonGroup >
-                                <Button  color="info">year 2000-</Button>
-                                <Button  color="info">year -1999</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterAction, "action")}>Action</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterComedy, "comedy")}>Comedy</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterDrama, "drama")}>Drama</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterFantasy, "fantasy")}>Fantasy</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterThriller, "thriller")}>Thriller</Button>
                             </ButtonGroup>
                         </div>
                         <br/>
@@ -102,7 +110,12 @@ const mapDispatchToProps = dispatch => {
         titleAsc: () => dispatch(titleAsc()),
         titleDesc: () => dispatch(titleDesc()),
         searchValue: (event) => dispatch(searchValue(event)),
-        resetPage: () => dispatch(resetPage())
+        resetPage: () => dispatch(resetPage()),
+        filterAction: () => dispatch(filterAction()),
+        filterComedy: () => dispatch(filterComedy()),
+        filterDrama: () => dispatch(filterDrama()),
+        filterFantasy: () => dispatch(filterFantasy()),
+        filterThriller: () => dispatch(filterThriller()),
     }
 }
 

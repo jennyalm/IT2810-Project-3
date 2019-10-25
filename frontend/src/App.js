@@ -56,10 +56,10 @@ const App = (props) => {
     }
 
     // må ha egen til hver url siden statene ikke oppdateres raskt nok.
-    const search = (searchValue) => fetchUrl("http://localhost:4000/movies?title="+searchValue+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page)
-    const page = (pageNum) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+pageNum)
-    const orderResult = (orderBy, sortBy) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+orderBy+"&sort="+sortBy+"&page="+props.page)
-    
+    const search = (searchValue) => fetchUrl("http://localhost:4000/movies?title="+searchValue+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+props.filterBy)
+    const page = (pageNum) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+pageNum+"&genre="+props.filterBy)
+    const orderResult = (orderBy, sortBy) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+orderBy+"&sort="+sortBy+"&page="+props.page+"&genre="+props.filterBy)
+    const filter = (typeFilter) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+typeFilter)
     //const sort = (sortBy) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+sortBy+"&page="+props.page)
 
 
@@ -70,6 +70,7 @@ const App = (props) => {
                 <Search 
                     search={search} 
                     orderResult={orderResult}
+                    filter={filter}
                 />
             </div>
             <div className="App">
@@ -102,7 +103,8 @@ const mapStateToProps = state => ({
     searchText: state.SearchReducer.search,
     order: state.SortReducer.order,
     sortBy: state.SortReducer.sortBy,
-    page: state.PageReducer.page
+    page: state.PageReducer.page,
+    filterBy: state.FilterReducer.filterBy
 })
 
 // dispatches to the global redux store.
