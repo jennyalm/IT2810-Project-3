@@ -40,7 +40,7 @@ Vi har også valgt å ha sidevisning med enkle knapper som blar igjennom sidene.
 # Cypress
 
 Vi benytter oss av cypress for automatisert end-to-end testing av prosjektet.
-For å kjøre testene: npm cypress run(?)
+For å kjøre testene: npm run test:cypress
 
 # Jest
 Vi benyttet Jest tester underveis i prosjektet for å enhetsteste prosjektet vårt. For å kjøre testene skriver man npm test i terminalen inne i frontend.
