@@ -43,7 +43,12 @@ Generelt gjennom utviklingen har vi fokusert på brukertesting, men har også in
 # Cypress
 
 Vi benytter oss av cypress for automatisert end-to-end testing av prosjektet. Den går gjennom om noen av de mest sentrale funksjonene på side, og sørger for at vi får riktig respons.
-For å kjøre testene: npm run test:cypress
+For å kjøre testene navigerer du til frontend og kjører i to terminalinstanser:
+
+`npm start`
+`npm run test:cypress`
+
+App.e2e.js er testfila.
 
 # Jest
 Vi benyttet Jest tester underveis i prosjektet for å enhetsteste prosjektet vårt. For å kjøre testene skriver man npm test i terminalen inne i frontend.
