@@ -1,5 +1,4 @@
 export const success = (search) => {
-    console.log("search payload: " + search);
     return{
         type: 'SEARCH_MOVIES_SUCCESS',
         payload: search
@@ -28,3 +27,43 @@ export const yearDesc = () => {
         type: 'YEAR_DESC'
     }
 };
+
+export const titleAsc = () => {
+    return{
+        type: 'TITLE_ASC'
+    }
+};
+
+export const titleDesc = () => {
+    return{
+        type: 'TITLE_DESC'
+    }
+};
+
+export const searchValue = (search) => {
+    console.log("search payload: " + search);
+    return{
+        type: 'SEARCH',
+        payload: search
+    }
+}
+
+export const nextPage = () => {
+    return{
+        type: 'NEXT_PAGE',
+    }
+}
+
+export const prevPage = () => {
+    return{
+        type: 'PREV_PAGE',
+    }
+}
+
+export const resetPage = () => {
+    return{
+        type: 'RESET_PAGE',
+    }
+}
+
+
