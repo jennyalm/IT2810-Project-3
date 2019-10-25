@@ -1,5 +1,4 @@
 export const success = (search) => {
-    console.log("search payload: " + search);
     return{
         type: 'SEARCH_MOVIES_SUCCESS',
         payload: search

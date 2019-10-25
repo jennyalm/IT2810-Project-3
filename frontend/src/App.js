@@ -8,6 +8,7 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Search from "./components/Search/Search";
 import DisplayMovies from './components/DisplayMovies/DisplayMovies'
+import DataVisualization from "./components/DataVisualization/DataVisualization";
 
 // redux
 import { connect } from 'react-redux';
@@ -54,6 +55,9 @@ const App = (props) => {
                     errorMessage={props.errorMessage}
                 />
                 </div>
+            </div>
+            <div className="Statistics">
+                <DataVisualization/>
             </div>
         </div>
 

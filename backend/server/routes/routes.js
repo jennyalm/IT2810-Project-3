@@ -67,7 +67,7 @@ router.get("/", async (request, response) => {
 });
 
 router.get("/all-movies", async (req, res) => {
-   await res.json(await movies.find())
+   await res.json(await movies.find());
 });
 
 
