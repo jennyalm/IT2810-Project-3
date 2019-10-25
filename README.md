@@ -7,7 +7,7 @@ Det skal også være mulig å gi en rating på hver film. Brukeren har mulighet 
 Vi har valgt å bruke react Redux fremfor Mobux, da redux er bedre dokumentert, og dermed er lettere å sette seg inn i. 
 Redux er et verktøy for å håndtere  states. Redux lagrer alle tilstandene globalt og i en store. 
 
-BILDE INN HER
+[!alt text](Skjermbilde6.PNG)
 
 Vi har alle reducerene våre i mappen reducers, som blir satt sammen i index.js med combineReducers også i mappen. 
 I index.js i actions mappen blir alle funksjonene opprettet. I src/index.js oppretter vi en store ved createStore, 
@@ -19,7 +19,7 @@ Databasen vi har valgt å bruke i dette prosjektet er mongoDB. MongoDB er et NoS
 som gjør det lett for oss som utviklere å bruke den.  Vi har opprettet en moviedb, som inneholder alle filmene, 
 brukerne kan søke på. Oppsettet på hver film:
 
-BILDE INN HER
+[!alt text](Skjermbilde5.PNG)
 
 ## REST Api
 # express & mongoose
@@ -57,19 +57,19 @@ og vi rett og slett ikke har nok tid, valgte vi å heller ha det som "TODO" i fr
 ## Skjermdump av nettsiden
 bilder:
 
-##BILDE HER 
+[!alt text](Skjermbilde1.PNG)
 
 Nettsiden vår slik den ser ut uten at vi trykker på noe
 
-##BILDE HER 
+[!alt text](Skjermbilde2.PNG)
 
 Etter å ha trykket på Show Options får man opp to buttongroups hvor man kan velge mellom sortering og filtrerings alternativer.
 
-##BILDE HER 
+[!alt text](Skjermbilde3.PNG)
 
 Når man trykker på Database stats får man opp statsene fra databasen. Her blir alle filmene sjekket, og vi viser i form av "bobler" hvor mange filmer som tilhører til ulike tiårene.
 
-##BILDE HER 
+[!alt text](Skjermbilde4.PNG) 
 
 Enkel next, prev for å bla i de ulike sidene som kommer fra databasen. Her har vi også en plan om å oppgradere til å gi mer feedback ang hvilken side man er på og hvor mange det er totalt.
 Vi kan også se hvordan rating systemt fungerer. Man kan trykke på antall stjerner man ønsker å rate en film med, og etter dette får man opp average rating. Vi valgte å la average rating komme opp etterpå, 
