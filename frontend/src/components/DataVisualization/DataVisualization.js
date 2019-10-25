@@ -1,9 +1,16 @@
+/*
+Creates a BubbleChart showing the distribution of movies over the last 10 decades.
+ */
+
 import React, { PureComponent } from 'react';
+
+// Library used to create chart: Recharts
 import {
     ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip,
     Legend, ResponsiveContainer,
 } from 'recharts';
 
+// Data to be displayed by the BubbleChart
 let data = [
     { decade: "'20s", index: 1, value: 0 },
     { decade: "'30s", index: 1, value: 0 },
@@ -17,6 +24,8 @@ let data = [
     { decade: "'10s", index: 1, value: 0 },
 ];
 
+// Gathers every movie in the database and extracts the year of release of each one into an array.
+// The array of years is iterated over to update the value in data corresponding to the correct decade.
 const fetchData = async () => {
     let years = [];
 
@@ -59,6 +68,7 @@ const fetchData = async () => {
 
 export default class DataVisualization extends PureComponent {
 
+    // Renders the small "pop up" that appears when hovering over a "bubble"
     renderTooltip = (props) => {
         const { active, payload } = props;
 
@@ -79,7 +89,7 @@ export default class DataVisualization extends PureComponent {
             );
         }
         return null;
-    }
+    };
 
     render() {
         fetchData();
