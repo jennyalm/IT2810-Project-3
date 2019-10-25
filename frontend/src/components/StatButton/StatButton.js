@@ -29,7 +29,7 @@ const StatToggle = () => (
                 <UncontrolledCollapse toggler="#toggler">
                     <Card>
                         <CardBody>
-                            <p>Number of movies in database: 30</p>
+                            <p id={"nr"}>Number of movies in database: 100</p>
                             <p>Distribution of releases over the last 10 decades:</p>
                             <DataVisualization/>
                         </CardBody>

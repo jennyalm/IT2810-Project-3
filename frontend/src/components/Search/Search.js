@@ -51,7 +51,7 @@ const Search = (props) => {
 
                 />
                 <br/>
-                <Button size="lg" block color="success" onClick={callSearchFunction} type="submit" value="SEARCH">SEARCH</Button>
+                <Button id="searchButton" size="lg" block color="success" onClick={callSearchFunction} type="submit" value="SEARCH">SEARCH</Button>
             </FormGroup>
             {showOptions ? 
                 <div className="Options">
