@@ -62,7 +62,7 @@ function MovieIterator(props){
                 containerStyle={containerStyle}
                 >
                 <div className="popup">
-                    <h1>{title}</h1>
+                    <h1 id={"popTitle"}>{title}</h1>
                     <p>Plot:</p>
                     <p>{plot}</p>
                     <p>Genre: {genre}</p>
