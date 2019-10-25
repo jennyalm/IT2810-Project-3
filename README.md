@@ -43,8 +43,9 @@ Vi benytter oss av cypress for automatisert end-to-end testing av prosjektet.
 For å kjøre testene: npm cypress run(?)
 
 # Jest
-Vi benytter oss av jest for å enhetsteste prosjektet vårt. 
- For å kjøre testene skriver man npm test i terminalen. 
+Vi benyttet Jest tester underveis i prosjektet for å enhetsteste prosjektet vårt. For å kjøre testene skriver man npm test i terminalen inne i frontend.
+Mot slutten av prosjektet har vi brukt cypress tester. 
+ 
 
 ## CSS 
 
