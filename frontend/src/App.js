@@ -17,7 +17,7 @@ import { success, failure, req, searchValue } from './actions'
 
 
 // the default search when website opens, with search: s=tarzan
-const MOVIE_API_URL = `http://localhost:4000/movies?title=Die&order=-1&sort=Year&page=1`;
+const MOVIE_API_URL = `http://localhost:4000/movies?title=Tarzan&order=-1&sort=Year&page=1`;
 
 
 const App = (props) => {
@@ -36,7 +36,7 @@ const App = (props) => {
 
 
     // The search method
-    const search = searchValue => {
+    /* const search = searchValue => {
         console.log("TEKSTEN SOM BLE SØKT PÅ I APP: "+ searchValue)
         props.req();
         fetch(`http://localhost:4000/movies?title=${searchValue}&order=${props.order}&sort=${props.sortBy}&page=1`)
@@ -44,17 +44,24 @@ const App = (props) => {
             .then(jsonResponse => {
                 props.success(jsonResponse.docs);
             });
-    };
+    }; */
 
-    const sort = () => {
+    const fetchUrl =  (url) => {
         props.req();
-        fetch(`http://localhost:4000/movies?title=${props.searchText}&order=${props.order}&sort=${props.sortBy}&page=${props.page}`)
+        fetch(url)
             .then(response => response.json())
             .then(jsonResponse => {
                 props.success(jsonResponse.docs);
             });
     }
-    
+
+    // må ha egen til hver url siden statene ikke oppdateres raskt nok.
+    const search = (searchValue) => fetchUrl("http://localhost:4000/movies?title="+searchValue+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+props.filterBy)
+    const page = (pageNum) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+pageNum+"&genre="+props.filterBy)
+    const orderResult = (orderBy, sortBy) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+orderBy+"&sort="+sortBy+"&page="+props.page+"&genre="+props.filterBy)
+    const filter = (typeFilter) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+props.sortBy+"&page="+props.page+"&genre="+typeFilter)
+    //const sort = (sortBy) => fetchUrl("http://localhost:4000/movies?title="+props.searchText+"&order="+props.order+"&sort="+sortBy+"&page="+props.page)
+
 
     return (
         <div className="Content">
@@ -62,7 +69,8 @@ const App = (props) => {
             <div className="searchStyle">
                 <Search 
                     search={search} 
-                    sort={sort}
+                    orderResult={orderResult}
+                    filter={filter}
                 />
             </div>
             <div className="App">
@@ -73,7 +81,7 @@ const App = (props) => {
                         errorMessage={props.errorMessage}
                     />
                 </div>
-                <Pages changePage={sort}/>
+                <Pages changePage={page}/>
             </div>
         </div>
 
@@ -92,7 +100,8 @@ const mapStateToProps = state => ({
     searchText: state.SearchReducer.search,
     order: state.SortReducer.order,
     sortBy: state.SortReducer.sortBy,
-    page: state.PageReducer.page
+    page: state.PageReducer.page,
+    filterBy: state.FilterReducer.filterBy
 })
 
 // dispatches to the global redux store.

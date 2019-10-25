@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormGroup, Input, ButtonGroup } from 'reactstrap';
 import { connect } from 'react-redux';
-import { yearAsc, yearDesc, titleAsc, titleDesc, searchValue, resetPage } from '../../actions'
+import { yearAsc, yearDesc, titleAsc, titleDesc, searchValue, resetPage, filterAction, filterComedy, filterDrama, filterFantasy, filterThriller } from '../../actions'
 
 
 import './Search.css';
@@ -31,10 +31,17 @@ const Search = (props) => {
         resetInputField();
     }
 
-    const callSortFunction = (action) => {
+    // sender inn order og sort direkte, siden ikke statene oppdateres raskt nok
+    const callSortFunction = (action, orderBy, sortBy) => {
+        props.orderResult(orderBy, sortBy)
         action()
-        props.sort()
     }
+
+    const callFilterFunction = (action, filterBy) => {
+        props.filter(filterBy)
+        action()
+    }
+
 
 // TODO  SEARCH ER ALT FOR BRED, SKAL FIKSES
     return (
@@ -59,21 +66,25 @@ const Search = (props) => {
                         <div className="Sort">
                             <p>sort</p>
                             <ButtonGroup >
-                                <Button color="info" onClick={() => callSortFunction(props.titleAsc)}>Title A-Z</Button>
-                                <Button color="info" onClick={() => callSortFunction(props.titleDesc)}>Title Z-A</Button>
-                                <Button color="info" onClick={() => callSortFunction(props.yearAsc)}>New - Old</Button>
-                                <Button color="info" onClick={() => callSortFunction(props.yearDesc)}>Old - New</Button>
+                                <Button color="info" onClick={() => callSortFunction(props.titleAsc, "1", "Title")}>Title A-Z</Button>
+                                <Button color="info" onClick={() => callSortFunction(props.titleDesc, "-1", "Title")}>Title Z-A</Button>
+                                <Button color="info" onClick={() => callSortFunction(props.yearAsc, "-1", "Year")}>New - Old</Button>
+                                <Button color="info" onClick={() => callSortFunction(props.yearDesc, "1", "Year")}>Old - New</Button>
                             </ButtonGroup>
                         </div>
                         <div className="Filter">
                             <p>filter:</p>
                             <ButtonGroup >
-                                <Button  color="info">year 2000-</Button>
-                                <Button  color="info">year -1999</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterAction, "action")}>Action</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterComedy, "comedy")}>Comedy</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterDrama, "drama")}>Drama</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterFantasy, "fantasy")}>Fantasy</Button>
+                                <Button  color="info" onClick={() => callFilterFunction(props.filterThriller, "thriller")}>Thriller</Button>
                             </ButtonGroup>
                         </div>
                         <br/>
                         <Button color="danger" onClick={() => setShowOptions(false)}>Hide options</Button>
+                    
                     </div>
                 </div>
             : <div>
@@ -99,7 +110,12 @@ const mapDispatchToProps = dispatch => {
         titleAsc: () => dispatch(titleAsc()),
         titleDesc: () => dispatch(titleDesc()),
         searchValue: (event) => dispatch(searchValue(event)),
-        resetPage: () => dispatch(resetPage())
+        resetPage: () => dispatch(resetPage()),
+        filterAction: () => dispatch(filterAction()),
+        filterComedy: () => dispatch(filterComedy()),
+        filterDrama: () => dispatch(filterDrama()),
+        filterFantasy: () => dispatch(filterFantasy()),
+        filterThriller: () => dispatch(filterThriller()),
     }
 }
 

@@ -25,6 +25,7 @@ router.get("/", async (request, response) => {
 
 // Default er er satt som sortert på Year, i stigende rekkefølge. 6 filmer pr. page
 
+   
     let sort = request.query.sort ? request.query.sort: 'Year';
     let order = request.query.order ? request.query.order : '-1';
     let page = request.query.page ? request.query.page : 1;
@@ -38,7 +39,7 @@ router.get("/", async (request, response) => {
     if (request.query.year) { content.Year = request.query.year}
     if (request.query.title) { content.Title = {$regex : RegExp(request.query.title), $options : '-i'}}
     if (request.query.genre) { content.Genre = {$regex : RegExp(request.query.genre), $options : '-i'}}
-
+    
 
     //pagination plugin for mongoose. Gjør det enkelt å sortere og hente ut x antall filemr.
     //mongoose-paginate er importert i movies.js
@@ -60,6 +61,9 @@ router.get("/", async (request, response) => {
         next(err)
     }
 });
+
+
+
 
 router.get("/all-movies", async (req, res) => {
    await res.json(await movies.find());
