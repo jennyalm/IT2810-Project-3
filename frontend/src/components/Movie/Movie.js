@@ -37,8 +37,8 @@ class Movie extends React.Component { //= ({ movie, onClick}) => {
         const poster =  this.props.movie.Poster === "N/A" ? DEFAULT_PLACEHOLDER_IMAGE : this.props.movie.Poster;
 
         const { rating } = this.state;
-        
-        
+
+        const averageRating = arr => parseFloat(arr.reduce((p,c) => p + c, 0) / (arr.length)).toFixed(1); 
 
         return (
             <div>
@@ -65,7 +65,11 @@ class Movie extends React.Component { //= ({ movie, onClick}) => {
                 onStarClick={this.onStarClick.bind(this)}
                 editing={this.state.canGiveRating}
                 
-            /><p>Average rating: 4.5</p>
+            />
+            {!this.state.canGiveRating ? 
+                <p>Average rating: {averageRating(this.props.movie.Rating)}</p>
+                : null
+            }
             <br/>
             <br/>
             <br/>
