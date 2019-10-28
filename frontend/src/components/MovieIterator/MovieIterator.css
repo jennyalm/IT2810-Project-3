@@ -8,18 +8,26 @@
     grid-column-gap: 0%;
     grid-row-gap: 0%;
     grid-template-columns: repeat(3, 1fr);
+    
 }
+
+
 
 .popup{
     color: white;
     width: 500px;
     height: 500px;
+    margin: 0 auto;
 }
 .button{
     position: absolute;
     bottom: 5%;
     left: 25%;
     width: 50%;
+}
+.PosterModal{
+    width: 15vw;
+    height: auto;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -32,7 +40,11 @@
     .popup{
         font-size: .5vh;
     }
+    .PosterModal{
+        width: 25vw;
+    }
   }
+  
 
 @media only screen and (max-width: 600px) {
     .movies{
@@ -43,5 +55,8 @@
     }
     .popup{
         font-size: .5vh;
+    }
+    .PosterModal{
+        width: 50vw;
     }
   }

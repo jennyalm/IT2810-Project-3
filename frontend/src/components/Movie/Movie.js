@@ -49,7 +49,7 @@ class Movie extends React.Component { //= ({ movie, onClick}) => {
                 
                 <div>
                     <img
-                        onClick={this.props.onClick}
+                        onClick={() => this.props.onClick(averageRating(this.props.movie.Rating))}
                         alt={`The movie titled: ${this.props.movie.Title}`}
                         src={poster}
                         className="Poster"

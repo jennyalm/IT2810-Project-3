@@ -1,5 +1,5 @@
 const initialState = {
-    search: "tarzan"
+    search: ""
 };
 
 
@@ -13,7 +13,7 @@ const searchReducer = (state = initialState, action) => {
             }
         default:
             return{
-               ...state
+               ...state,
             }
     }
 }
