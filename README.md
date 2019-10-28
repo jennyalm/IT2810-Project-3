@@ -1,4 +1,8 @@
 ## Project-3 -  Gruppe 13
+
+## Endring etter fristen
+Vi gjorde en liten endring etter fristen som fikset litt bugs med utseende og serveren. Vi gjorde dette etter at vi fikk lov av læringsassistent Marius.
+
 ## Vår løsning
 Vi har valgt å lage en web applikasjon hvor det er mulig å søke på ulike filmer, og få informasjon om disse. 
 Det skal også være mulig å gi en rating på hver film. Brukeren vil etter å ha gitt sin rating, kunne se gjennomsnittlig rating for filmen. Brukeren har mulighet til å sortere filmer på år og tittel, og filtrere på sjangere.
