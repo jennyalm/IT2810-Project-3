@@ -4,6 +4,7 @@ import './MovieIterator.css';
 import Modal, {closeStyle} from 'simple-react-modal'
 import {Button} from 'reactstrap'
 
+
 function MovieIterator(props){
 
 
@@ -14,26 +15,34 @@ function MovieIterator(props){
     const [title, setTitle] = useState("");
     const [plot, setPlot] = useState("");
     const [genre, setGenre] = useState("")
-    
-    const callPopup = (t, p, g) => {
+    const [poster, setPoster] = useState("")
+    const [average, setAverage] = useState("")
+
+    const callPopup = (t, p, g, po, a) => {
         setShow(!show)
         setTitle(t);
         setPlot(p);
         setGenre(g)
+        setPoster(po)
+        setAverage(a)
     }
     
     const myStyle = {
         backgroundColor: "rgba(0, 0, 0, 0.2)",
         height: "100%",
-        width: "100%"
+        width: "100%",
+        
       };
     const containerStyle = {
         background: "black",
-        width: "50%",
-        height: "70%",
+        width: "80%",
+        height: "100%",
         textAlign: "center",
         display: "flex",
-        alignContent: "center"
+        alignContent: "center",
+        position: "absolute",
+        top: "-5%",
+        left: "10%"
     }
 
     // maps every movie in movies and creates a movie component for each.
@@ -41,7 +50,7 @@ function MovieIterator(props){
         .map((movie, index) => (
                 <div key={movie._id} >
                     <Movie 
-                        onClick={() => callPopup(movie.Title, movie.Plot, movie.Genre)} 
+                        onClick={(average) => callPopup(movie.Title, movie.Plot, movie.Genre, movie.Poster, average)} 
                         key={movie._id} 
                         movie={movie}
                         imdbID = {movie.imdbID} 
@@ -62,15 +71,23 @@ function MovieIterator(props){
                 containerStyle={containerStyle}
                 >
                 <div className="popup">
-                    <h1 id={"popTitle"}>{title}</h1>
-                    <p>Plot:</p>
-                    <p>{plot}</p>
+                    <h3 id={"popTitle"}>{title}</h3>
+                    <p>Plot: {plot}</p>
                     <p>Genre: {genre}</p>
+                    <p>Average rating: {average}</p>
+                    <img
+                        alt={`The movie titled: ${title}`}
+                        src={poster}
+                        className="Poster"
+                    />
+                    
+                    
                     <Button className="button" color="danger" onClick={() => setShow(false)}>Close</Button>
                 </div>
             </Modal>
+            {props.movies.length ? null : <p className="noResult">Found no results</p>}
             <div className={"movies"}>
-                {displayMovies}
+                {props.movies.length ? displayMovies : null}
             </div>
         </div>
         

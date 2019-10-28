@@ -43,6 +43,7 @@ const Search = (props) => {
         action()
     }
 
+    
 // buttons and input field is made with reactstrap.
     return (
         <div>
@@ -52,9 +53,10 @@ const Search = (props) => {
                     type="search"
                     name="search"
                     id="exampleSearch"
-                    placeholder="tarzan"
+                    placeholder="Search (e.g lord of the rings)"
                     value={searchValue}
                     onChange={handleSearchInputChanges}
+                    
 
                 />
                 <br/>
